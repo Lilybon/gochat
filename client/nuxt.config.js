@@ -1,4 +1,3 @@
-const colors = require('vuetify/es5/util/colors').default
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 
 module.exports = {
@@ -37,7 +36,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-   '@/plugins/vuetify'
+    '~/plugins/vuetify-theme-cache'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -68,15 +67,45 @@ module.exports = {
     customVariables: ['~/assets/variables.scss'],
     theme: {
       dark: true,
+      options: {
+        minifyTheme: function (css) {
+          return process.env.NODE_ENV === 'production'
+            ? css.replace(/[\s|\r\n|\r|\n]/g, '')
+            : css
+        },
+      },
       themes: {
         dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3
+          primary: {
+            lighten1: '#33AADC',
+            base: '#2EA6FF',
+            darken1: '#1F94FB',
+            darken2: '#3D6A97'
+          },
+          accent: {
+            lighten1: '#213040',
+            base: '#18222D',
+            darken1: '#131415'
+          },
+          secondary: {
+            base: '#D074E6'
+          },
+          info: {
+            base: '#FFFFFF',
+            darken1: '#AFC0D3',
+            darken2: '#8E8E92'
+          },
+          warning: {
+            base: '#FD9500'
+          },
+          error: {
+            lighten1: '#FE8D86',
+            base: '#FF3B2E'
+          },
+          success: {
+            lighten1: '#64FFDA',
+            base: '#4AD863'
+          }
         }
       }
     }
