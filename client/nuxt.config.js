@@ -1,4 +1,5 @@
 const colors = require('vuetify/es5/util/colors').default
+const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 
 module.exports = {
   mode: 'universal',
@@ -21,6 +22,12 @@ module.exports = {
   ** Customize the progress-bar color
   */
   loading: { color: '#fff' },
+  manifest: {
+    name: 'GoChat',
+    short_name: 'GC',
+    description: process.env.npm_package_description,
+    theme_color: 'black'
+  },
   /*
   ** Global CSS
   */
@@ -30,6 +37,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+   '@/plugins/vuetify'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -80,6 +88,8 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
+   transpile: ['vuetify/lib'],
+   plugins: [new VuetifyLoaderPlugin()],
     extend (config, ctx) {
     }
   }
