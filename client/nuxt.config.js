@@ -68,6 +68,7 @@ module.exports = {
     theme: {
       dark: true,
       options: {
+        customProperties: true,
         minifyTheme: function (css) {
           return process.env.NODE_ENV === 'production'
             ? css.replace(/[\s|\r\n|\r|\n]/g, '')
