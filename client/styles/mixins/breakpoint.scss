@@ -1,0 +1,5 @@
+@mixin sm-and-down {
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    @content;
+  }
+}

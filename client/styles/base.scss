@@ -1,0 +1,17 @@
+body {
+  background-color: var(--v-accent-base);
+}
+.border {
+  &--top {
+    border-top: 1px solid;
+  }
+  &--bottom {
+    border-bottom: 1px solid;
+  }
+  &--accent-lighten-1 {
+    border-color: var(--v-accent-lighten1);
+  }
+  &--transparent {
+    border-color: transparent;
+  }
+}

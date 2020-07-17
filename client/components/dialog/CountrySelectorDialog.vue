@@ -44,13 +44,13 @@ interface Option {
   name: string
   value: string
 }
-interface CountrySelector {
+interface CountrySelectorDialog {
   search: string
   selected: string
   options: Array<Option>
 }
 export default Vue.extend({
-  name: 'CountrySelector',
+  name: 'CountrySelectorDialog',
   props: {
     value: Boolean,
     country: String,
@@ -61,7 +61,7 @@ export default Vue.extend({
       search: '',
       selected: '',
       options: []
-    } as CountrySelector
+    } as CountrySelectorDialog
   },
   watch: {
     code (text: string) {

@@ -1,7 +1,7 @@
 <template>
   <v-app dark>
-    <div class="accent lighten-1 entry__header"></div>
-    <v-content class="entry__container">
+    <div class="accent lighten-1 simple__header"></div>
+    <v-content class="simple__container">
       <v-container pa-0 fluid>
         <nuxt />
       </v-container>
@@ -12,14 +12,13 @@
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
+  name: 'Simple'
 })
 </script>
 
 <style lang="scss">
-$entry-bar-height-sm-down: 56px;
-$entry-bar-height-md-up: 226px;
 @mixin entry ($header-height, $container-offset) {
-  .entry {
+  .simple {
     &__header {
       height: $header-height;
     }
@@ -28,8 +27,14 @@ $entry-bar-height-md-up: 226px;
     }
   }
 }
-@include entry($entry-bar-height-md-up, $entry-bar-height-md-up / 2);
-@media #{map-get($display-breakpoints, 'sm-and-down')} {
-  @include entry($entry-bar-height-sm-down, $entry-bar-height-sm-down);
+@include entry(
+  map-get($simple-bar-height, "md-up"),
+  map-get($simple-bar-height, "md-up") / 2
+);
+@include sm-and-down {
+  @include entry(
+    map-get($simple-bar-height, "sm-down"),
+    map-get($simple-bar-height, "sm-down")
+  );
 }
 </style>

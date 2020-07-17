@@ -1,0 +1,28 @@
+// simple layout
+$simple-bar-height: (
+  "sm-down": 56px,
+  "md-up": 226px
+);
+// chatroom layout
+$app-height: (
+  "sm-down":100vh,
+  "md-up": 80vh
+);
+$header-height: 20px;
+$toolbar-height: 50px;
+$main-width: (
+  "sm-down":375px,
+  "md-up": 825px
+);
+$main-height: (
+  "sm-down": calc(#{map-get($app-height, "sm-down")} - #{$header-height}),
+  "md-up": calc(#{map-get($app-height, "md-up")} - #{$header-height})
+);
+$max-textarea-height: (
+  "sm-down":  calc(#{map-get($app-height, "sm-down")} - #{$header-height} - #{$toolbar-height}),
+  "md-up": calc(#{map-get($app-height, "md-up")} - #{$header-height} - #{$toolbar-height})
+);
+$scroll-height: (
+  "sm-down": calc(#{map-get($app-height, "sm-down")} - #{$header-height} - #{$toolbar-height} * 2),
+  "md-up": calc(#{map-get($app-height, "md-up")} - #{$header-height} - #{$toolbar-height} * 2)
+);

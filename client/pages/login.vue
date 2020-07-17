@@ -16,7 +16,7 @@
       </v-toolbar>
       <v-card class="accent" flat>
         <v-form class="login__wrapper">
-          <h3 class="login__title">Sign in</h3>
+          <h3 class="mb-5">Sign in</h3>
           <p class="caption">Please choose your country and enter your full phone number.</p>
           <v-row>
             <v-col cols="12">
@@ -54,7 +54,7 @@
     </template>
 
     <v-card v-else class="accent login__wrapper">
-      <h3 class="login__title">
+      <h3 class="mb-5">
         <span>About</span>
         <a @click="show.more = false">hide</a>
       </h3>
@@ -62,7 +62,7 @@
       <p class="caption">Feel free to enjoy online demo and view code on github.</p>
     </v-card>
 
-    <country-selector
+    <country-selector-dialog
       v-model="show.country"
       :country.sync="user.country"
       :code.sync="user.code"
@@ -73,7 +73,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import CountrySelector from '~/components/CountrySelector.vue'
+import CountrySelectorDialog from '~/components/dialog/CountrySelectorDialog.vue'
 interface User {
   country: string,
   code: string,
@@ -89,9 +89,9 @@ interface Data {
 }
 export default Vue.extend({
   name: 'login',
-  layout: 'entry',
+  layout: 'simple',
   components: {
-    CountrySelector
+    CountrySelectorDialog
   },
   data () {
     return {
@@ -120,9 +120,6 @@ export default Vue.extend({
     margin-bottom: 20px;
     padding: 44px 65px;
     max-width: 400px;
-  }
-  &__title {
-    margin-bottom: 20px;
   }
 }
 </style>
