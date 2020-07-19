@@ -6,23 +6,23 @@
           <app-header></app-header>
         </div>
         <div class="app__aside">
-          <panel-wrapper
-            :wrapFooter="false"
-            :transparent-header="currentTool.hiddenToolBottom"
-          >
-            <template v-slot:header>
+          <div class="panel">
+            <div :class="[
+              'panel__header',
+              'panel__header--wrap',
+              { 'panel__header--transparent': toolIndex % 2 === 0 }]">
               <component
                 class="d-flex space-between"
                 :is="currentTool.tool"
               ></component>
-            </template>
-            <template v-slot:main>
-              <component
-                :is="currentTool.list"
-                :contactId.sync="contactId"
-              ></component>
-            </template>
-            <template v-slot:footer>
+            </div>
+            <div class="panel__main">
+               <component
+                  :is="currentTool.list"
+                  :contactId.sync="contactId"
+                ></component>
+            </div>
+            <div class="panel__footer">
               <div>
                 <v-tabs
                   v-model="toolIndex"
@@ -34,9 +34,9 @@
                     <v-icon :color="toolIndex === index ? 'primary' : 'info-darken-1'">{{ tool.icon }}</v-icon>
                   </v-tab>
                 </v-tabs>
-                </div>
-            </template>
-          </panel-wrapper>
+              </div>
+            </div>
+          </div>
         </div>
         <div :class="{
           'app__main': true,
@@ -52,7 +52,6 @@
 <script lang="ts">
 import Vue from 'vue'
 import AppHeader from '~/components/Header.vue'
-import PanelWrapper from '~/components/wrapper/PanelWrapper.vue'
 import {
   mdiAccountCircle,
   mdiPhone,
@@ -70,13 +69,12 @@ interface Tool {
 }
 export default Vue.extend({
   components: {
-    AppHeader,
-    PanelWrapper
+    AppHeader
   },
   data () {
     return {
       isHydrated: false,
-      toolIndex: 1,
+      toolIndex: 0,
       contactId: '',
       tools: [
         {
@@ -107,8 +105,7 @@ export default Vue.extend({
           navHeader: 'Hello',
           tool: () => import('~/components/navigator/SettingsTool.vue'),
           list: () => import('~/components/navigator/SettingsList.vue'),
-          hiddenToolBottom: false,
-          path: '/settings'
+          hiddenToolBottom: false
         }
       ]
     }
@@ -119,15 +116,6 @@ export default Vue.extend({
     }
   },
   watch: {
-    currentTool (tool) {
-      const path = tool?.path
-      if (path) this.$router.push(path)
-      else if (this.contactId) this.$router.push({
-        name: 'chatroom-id',
-        params: { id: this.contactId }
-      })
-      else this.$router.push({ name: 'index' })
-    },
     contactId (id) {
       this.$router.push({
         name: 'chatroom-id',
@@ -187,7 +175,7 @@ export default Vue.extend({
       transition: transform .25s;
       &--out {
         position: relative;
-        transform: translateX(100%);
+        transform: translateX(calc(100% + 1px));
       }
     }
   }

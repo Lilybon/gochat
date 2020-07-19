@@ -1,6 +1,6 @@
 <template>
-  <panel-wrapper wrap-main>
-    <template v-slot:header>
+  <div class="panel">
+    <div class="panel__header panel__header--wrap">
       <div>
         <div>
           <v-btn :to="{ name: 'index' }" class="mr-1" icon color="primary">
@@ -16,16 +16,16 @@
           </v-btn>
         </div>
       </div>
-    </template>
-    <template v-slot:main>
+    </div>
+    <div class="panel__main">
       <component
         class="mb-1"
         v-for="i in 30" 
         :key="i"
         :is="'ChatroomMessage'"
       ></component>
-    </template>
-    <template v-slot:footer class="py-1 px-2">
+    </div>
+    <div class="panel__footer panel__footer--wrap">
       <div>
         <v-btn class="mr-2" icon color="info darken-2">
           <v-icon dense color="info darken-2">{{ mdiPaperclip }}</v-icon>
@@ -49,13 +49,12 @@
           <v-icon dense>{{ message.length ? mdiSend : mdiMicrophoneOutline }}</v-icon>
         </v-btn>
       </div>
-    </template>
-  </panel-wrapper>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import PanelWrapper from '~/components/wrapper/PanelWrapper.vue'
 import {
   mdiChevronLeft,
   mdiMagnify,
@@ -69,7 +68,6 @@ const ChatroomMessage = () => import('~/components/chatroom/ChatroomMessage.vue'
 export default Vue.extend({
   name: 'Chatroom',
   components: {
-    PanelWrapper,
     ChatroomMessage
   },
   data () {
