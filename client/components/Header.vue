@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center info--text text--darken-2 subtitle-2">GoChat</div>
+  <h1 class="text-center info--text text--darken-2 subtitle-2">GoChat</h1>
 </template>
 
 <script lang="ts">

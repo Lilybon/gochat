@@ -2,6 +2,20 @@ body {
   background-color: var(--v-accent-base);
   overflow: hidden;
 }
+.hidden {
+  display: none;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.font {
+  &--sm {
+    font-size: 0.75rem;
+  }
+  &--xs {
+    font-size: 0.5rem;
+  }
+}
 .border {
   &--top {
     border-top: 1px solid;
@@ -14,6 +28,9 @@ body {
   }
   &--transparent {
     border-color: transparent;
+  }
+  &--radius-lg {
+    border-radius: 10px;
   }
 }
 .panel {
@@ -68,4 +85,7 @@ body {
       justify-content: space-between;
     }
   }
+}
+.v-application--is-ltr .v-input--selection-controls__input {
+  margin-right: 0px;
 }

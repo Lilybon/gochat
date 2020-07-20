@@ -2,4 +2,9 @@
   @media #{map-get($display-breakpoints, 'sm-and-down')} {
     @content;
   }
-}
+};
+@mixin xs-only {
+  @media #{map-get($display-breakpoints, 'xs-only')} {
+    @content;
+  }
+};

@@ -1,10 +1,7 @@
 <template>
   <div>
-    <div>
-      SettingsList
-      <div v-for="link in links" :key="link.name">
-        <nuxt-link :to="{ name: link.route  }">{{ link.name }}</nuxt-link>
-      </div>
+    <div v-for="link in links" :key="link.name">
+      <nuxt-link :to="{ name: link.route  }">{{ link.name }}</nuxt-link>
     </div>
   </div>
 </template>
