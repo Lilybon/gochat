@@ -1,11 +1,14 @@
 <template>
-  <div class="settings-row d-flex justify-between py-2 text-capitalize">
-    <label class="settings-row__label" :for="labelFor">{{ title }}</label>
-    <slot></slot> 
+  <div class="settings-row d-flex justify-between align-center py-2">
+    <label class="settings-row__label" :for="labelFor">
+      <h5 class="text-capitalize">{{ title }}</h5>
+      <p v-if="subtitle.length" class="font--sm info--text text--darken-1">{{ subtitle }}</p>
+    </label>
+    <slot></slot>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
   name: 'SettingsRowWrapper',
@@ -14,9 +17,27 @@ export default Vue.extend({
       type: String,
       required: true
     },
-    labelFor: {
+    subtitle: {
       type: String,
-      required: false
+      required: false,
+      default: ''
+    },
+    labelPrefix: {
+      type: String,
+      required: false,
+      default: 'settings'
+    },
+    labelSuffix: {
+      type: String,
+      required: false,
+      default: ''
+    }
+  },
+  computed: {
+    labelFor (): string {
+      let label = this.labelPrefix + '__' + this.title.replace(/\s/g, '-')
+      if (this.labelSuffix.length) label += '__' + this.labelSuffix
+      return label
     }
   }
 })

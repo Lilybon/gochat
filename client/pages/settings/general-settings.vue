@@ -1,9 +1,9 @@
 <template>
   <div>
     <settings-group title="emoji & stickers">
-      <settings-row title="show sticker sidebar" label-for="show-sticker-sidebar">
+      <settings-row title="show sticker sidebar">
         <v-switch
-          id="show-sticker-sidebar"
+          id="settings__show-sticker-sidebar"
           color="primary darken-1"
           class="ma-0"
           v-model="control.showStickerSidebar"
@@ -13,9 +13,9 @@
         >
         </v-switch>
       </settings-row>
-      <settings-row title="replace emoji automatically" label-for="replace-emoji-automatically">
+      <settings-row title="replace emoji automatically">
         <v-switch
-          id="replace-emoji-automatically"
+          id="settings__replace-emoji-automatically"
           color="primary darken-1"
           class="ma-0"
           v-model="control.replaceEmojiAuto"
@@ -25,9 +25,9 @@
         >
         </v-switch>
       </settings-row>
-      <settings-row title="large emoji" label-for="large-emoji">
+      <settings-row title="large emoji">
         <v-switch
-          id="large-emoji"
+          id="settings__large-emoji"
           color="primary darken-1"
           class="ma-0"
           v-model="control.largeEmoji"
@@ -40,9 +40,9 @@
     </settings-group>
 
     <settings-group title="interface">
-      <settings-row title="show calls tab" label-for="show-calls-tab">
+      <settings-row title="show calls tab">
         <v-switch
-          id="show-calls-tab"
+          id="settings__show-calls-tab"
           color="primary darken-1"
           class="ma-0"
           v-model="control.showCallsTab"
@@ -52,9 +52,9 @@
         >
         </v-switch>
       </settings-row>
-      <settings-row title="show icon in menu bar" label-for="show-icons-in-menu-bar">
+      <settings-row title="show icon in menu bar">
         <v-switch
-          id="show-icons-in-menu-bar"
+          id="settings__show-icon-in-menu-bar"
           color="primary darken-1"
           class="ma-0"
           v-model="control.showIconsInMenuBar"
@@ -64,9 +64,9 @@
         >
         </v-switch>
       </settings-row>
-      <settings-row title="in-app sounds" label-for="in-app-sounds">
+      <settings-row title="in-app sounds">
         <v-switch
-          id="in-app-sounds"
+          id="settings__in-app-sounds"
           color="primary darken-1"
           class="ma-0"
           v-model="control.inAppSounds"
@@ -80,14 +80,24 @@
 
     <settings-group title="shortcuts">
       <settings-row title="keyboard shortcuts">
-        <v-btn x-small depressed color="accent lighten-1" :to="{ name: 'index' }">⌘ + ?</v-btn>
+        <v-btn
+          id="settings__keyboard-shortcuts"
+          class="pr-0 text-capitalize info--text text--darken-1"
+          text
+          small
+          depressed
+          @click="$router.push({ name: 'settings-keyboard-shortcuts' })"
+        >
+          ⌘ + ?
+          <v-icon color="info darken-2" dense>{{ mdiChevronRight }}</v-icon>
+        </v-btn>
       </settings-row>
     </settings-group>
 
     <settings-group title="advanced">
-      <settings-row title="copy text formatting" label-for="copy-text-formatting">
+      <settings-row title="copy text formatting">
         <v-switch
-          id="copy-text-formatting"
+          id="settings__copy-text-formatting"
           color="primary darken-1"
           class="ma-0"
           v-model="control.copyTextFormat"
@@ -97,9 +107,9 @@
         >
         </v-switch>
       </settings-row>
-      <settings-row title="accept secret chats" label-for="accept-secret-chats">
+      <settings-row title="accept secret chats">
         <v-switch
-          id="accept-secret-chats"
+          id="settings__accept-secret-chats"
           color="primary darken-1"
           class="ma-0"
           v-model="control.acceptSecretChats"
@@ -116,10 +126,9 @@
         v-for="action in forceTouchActions"
         :key="action.label"
         :title="action.label"
-        :label-for="`force-touch-action-${ action.value }`"
       >
         <settings-radio
-          :id="`force-touch-action-${ action.value }`"
+          :id="`settings__${ action.label.replace(/\s/g, '-') }`"
           v-model="control.forceTouchAction"
           :option-value="action.value"
         ></settings-radio>
@@ -131,10 +140,9 @@
         v-for="setting in inputSettings"
         :key="setting.label"
         :title="setting.label"
-        :label-for="`input-settings-${ setting.value }`"
       >
         <settings-radio
-          :id="`input-settings-${ setting.value }`"
+          :id="`settings__${ setting.label.replace(/\s/g, '-') }`"
           v-model="control.inputSettings"
           :option-value="setting.value"
         ></settings-radio>
@@ -148,6 +156,7 @@ import Vue from 'vue'
 import SettingsGroup from '~/components/wrapper/SettingsGroup.vue'
 import SettingsRow from '~/components/wrapper/SettingsRow.vue'
 import SettingsRadio from '~/components/SettingsRadio.vue'
+import { mdiChevronRight } from '@mdi/js'
 export default Vue.extend({
   name: 'GeneralSettings',
   components: {
@@ -157,6 +166,7 @@ export default Vue.extend({
   },
   data () {
     return {
+      mdiChevronRight,
       control: {
         showStickerSidebar: true,
         replaceEmojiAuto: false,

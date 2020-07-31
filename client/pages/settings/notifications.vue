@@ -1,9 +1,9 @@
 <template>
   <div>
     <settings-group title="notifications">
-      <settings-row title="notifications" label-for="notifications">
+      <settings-row title="notifications">
         <v-switch
-          id="notifications"
+          id="settings__notifications"
           color="primary darken-1"
           class="ma-0"
           v-model="control.notifications"
@@ -13,9 +13,9 @@
         >
         </v-switch>
       </settings-row>
-      <settings-row title="message preview" label-for="message-preview">
+      <settings-row title="message preview">
         <v-switch
-          id="message-preview"
+          id="settings__message-preview"
           color="primary darken-1"
           class="ma-0"
           v-model="control.messagePreview"
@@ -25,9 +25,9 @@
         >
         </v-switch>
       </settings-row>
-      <settings-row title="notification tone" label-for="notification-tone">
+      <settings-row title="notification tone">
         <v-switch
-          id="notification-tone"
+          id="settings__notification-tone"
           color="primary darken-1"
           class="ma-0"
           v-model="control.notificationTone"
@@ -37,9 +37,9 @@
         >
         </v-switch>
       </settings-row>
-      <settings-row title="bounce docker icon" label-for="bounce-docker-icon">
+      <settings-row title="bounce docker icon">
         <v-switch
-          id="bounce-docker-icon"
+          id="settings__bounce-docker-icon"
           color="primary darken-1"
           class="ma-0"
           v-model="control.bounceDockerIcon"
@@ -49,9 +49,9 @@
         >
         </v-switch>
       </settings-row>
-      <settings-row title="reset notification" label-for="reset-notification">
+      <settings-row title="reset notification">
         <v-switch
-          id="reset-notification"
+          id="settings__reset-notification"
           color="primary darken-1"
           class="ma-0"
           v-model="control.resetNotification"
@@ -64,9 +64,9 @@
     </settings-group>
 
     <settings-group title="badge counter" hint="Switch off to show the number of unread chats instead of messages.">
-      <settings-row title="enabled" label-for="enabled">
+      <settings-row title="enabled">
         <v-switch
-          id="enabled"
+          id="settings__enabled"
           color="primary darken-1"
           class="ma-0"
           v-model="control.enabled"
@@ -76,9 +76,9 @@
         >
         </v-switch>
       </settings-row>
-      <settings-row title="include groups" label-for="include-groups">
+      <settings-row title="include groups">
         <v-switch
-          id="include-groups"
+          id="settings__include-groups"
           color="primary darken-1"
           class="ma-0"
           v-model="control.includeGroups"
@@ -88,9 +88,9 @@
         >
         </v-switch>
       </settings-row>
-      <settings-row title="include channels" label-for="include-channels">
+      <settings-row title="include channels">
         <v-switch
-          id="include-channels"
+          id="settings__include-channels"
           color="primary darken-1"
           class="ma-0"
           v-model="control.includeChannels"
@@ -100,9 +100,9 @@
         >
         </v-switch>
       </settings-row>
-      <settings-row title="count unread messages" label-for="count-unread-messages">
+      <settings-row title="count unread messages">
         <v-switch
-          id="count-unread-messages"
+          id="settings__count-unread-messages"
           color="primary darken-1"
           class="ma-0"
           v-model="control.countUnreadMessage"
@@ -115,9 +115,9 @@
     </settings-group>
 
     <settings-group hint="Receive notifications when one of your contacts becomes available on Gochat.">
-      <settings-row title="new contacts" label-for="new-contacts">
+      <settings-row title="new contacts">
         <v-switch
-          id="new-contacts"
+          id="settings__new-contacts"
           color="primary darken-1"
           class="ma-0"
           v-model="control.newContacts"
@@ -130,9 +130,9 @@
     </settings-group>
 
     <settings-group title="when app is in focus" hint="Turn this on if you want to always receive notifications.">
-      <settings-row title="show notifications" label-for="show-notifications">
+      <settings-row title="show notifications">
         <v-switch
-          id="show-notifications"
+          id="settings__show-notifications"
           color="primary darken-1"
           class="ma-0"
           v-model="control.showNotifications"
@@ -150,13 +150,11 @@
 import Vue from 'vue'
 import SettingsGroup from '~/components/wrapper/SettingsGroup.vue'
 import SettingsRow from '~/components/wrapper/SettingsRow.vue'
-import SettingsRadio from '~/components/SettingsRadio.vue'
 export default Vue.extend({
-  name: 'GeneralSettings',
+  name: 'Notifications',
   components: {
     SettingsGroup,
-    SettingsRow,
-    SettingsRadio
+    SettingsRow
   },
   data () {
     return {

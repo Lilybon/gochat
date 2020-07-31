@@ -2,7 +2,13 @@
   <div class="panel">
     <div class="panel__header panel__header--wrap">
       <div>
-        <v-btn class="text-capitalize primary--text" color="accent darken-1" :to="{ name: 'index' }">
+        <v-btn
+          class="text-capitalize primary--text"
+          text
+          nuxt
+          @click="$router.go(-1)"
+          depressed
+        >
           <v-icon dense>{{ mdiChevronLeft }}</v-icon>
           back
         </v-btn>
@@ -39,6 +45,11 @@ export default Vue.extend({
       await this.$nextTick()
       this.$refs.scroll instanceof HTMLElement && (this.$refs.scroll.scrollTop = 0)
     }
+  },
+  created () {
+    if (this.$route.name === 'settings') {
+      this.$router.replace({ name: 'settings-general-settings' })
+    }
   }
 })
 </script>
@@ -46,7 +57,7 @@ export default Vue.extend({
 <style lang="scss">
 .settings {
   margin: 0 auto;
-  padding: 20px;
+  padding: 30px 20px;
   width: 600px;
   @include xs-only {
     width: 100%;

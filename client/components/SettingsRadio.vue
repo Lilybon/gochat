@@ -6,8 +6,8 @@
       @click="selected = optionValue"
     >{{ mdiCheckCircle }}</v-icon>
     <input
+      v-show="false"
       :id="id ? id : null"
-      class="hidden"
       v-model="selected"
       type="radio"
       :value="optionValue"

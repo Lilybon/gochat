@@ -1,10 +1,14 @@
 <template>
-  <div>SettingsTool</div>
+  <div>Files</div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
-  name: 'SettingsTool'
+  name: 'Files'
 })
 </script>
+
+<style>
+
+</style>

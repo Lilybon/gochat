@@ -2,11 +2,11 @@ body {
   background-color: var(--v-accent-base);
   overflow: hidden;
 }
-.hidden {
-  display: none;
-}
 .justify-between {
   justify-content: space-between;
+}
+.text-transform-none {
+  text-transform: none;
 }
 .font {
   &--sm {
@@ -86,6 +86,18 @@ body {
     }
   }
 }
+.v-application p {
+  margin: 0;
+}
 .v-application--is-ltr .v-input--selection-controls__input {
   margin-right: 0px;
+}
+.tiny-select {
+  width: 130px;
+  div[role=button] {
+    padding: 0 !important;
+  }
+  .notranslate {
+    color: var(--v-info-darken2) !important;
+  }
 }

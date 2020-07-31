@@ -105,6 +105,7 @@ export default Vue.extend({
           navHeader: 'Hello',
           tool: () => import('~/components/navigator/SettingsTool.vue'),
           list: () => import('~/components/navigator/SettingsList.vue'),
+          route: 'settings',
           hiddenToolBottom: false
         }
       ]
@@ -116,6 +117,10 @@ export default Vue.extend({
     }
   },
   watch: {
+    currentTool (tool) {
+      let next = tool.route || 'index'
+      if (next !== this.$route.name) this.$router.push({ name: next })
+    },
     contactId (id) {
       this.$router.push({
         name: 'chatroom-id',
