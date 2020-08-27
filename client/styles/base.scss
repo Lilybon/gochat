@@ -18,10 +18,10 @@ body {
 }
 .border {
   &--top {
-    border-top: 1px solid;
+    border-top: .0625rem solid;
   }
   &--bottom {
-    border-bottom: 1px solid;
+    border-bottom: .0625rem solid;
   }
   &--accent-lighten-1 {
     border-color: var(--v-accent-lighten1);
@@ -29,8 +29,11 @@ body {
   &--transparent {
     border-color: transparent;
   }
+  &--radius-md {
+    border-radius: .625rem;
+  }
   &--radius-lg {
-    border-radius: 10px;
+    border-radius: 1.25rem;
   }
 }
 .panel {
@@ -44,12 +47,12 @@ body {
     justify-content: space-between;
     align-items: center;
     flex-basis: $toolbar-height;
-    border-bottom: 1px solid var(--v-accent-lighten1);
+    border-bottom: .0625rem solid var(--v-accent-lighten1);
     &--wrap {
-      padding: 5px 10px;
+      padding: .3125rem .625rem;
     }
     &--transparent {
-      border-bottom: 1px solid transparent;
+      border-bottom: .0625rem solid transparent;
     }
     & > div {
       display: flex;
@@ -66,7 +69,7 @@ body {
     }
     overflow: auto;
     &--wrap {
-      padding: 0 20px;
+      padding: 0 1.25rem;
     }
   }
   &__footer {
@@ -76,9 +79,9 @@ body {
     }
     flex: 1 0 $toolbar-height;
     align-items: flex-end;
-    border-top: 1px solid var(--v-accent-lighten1);
+    border-top: .0625rem solid var(--v-accent-lighten1);
     &--wrap {
-      padding: 5px 10px;
+      padding: .3125rem .625rem;
     }
     & > div {
       display: flex;
@@ -90,10 +93,10 @@ body {
   margin: 0;
 }
 .v-application--is-ltr .v-input--selection-controls__input {
-  margin-right: 0px;
+  margin-right: 0;
 }
 .tiny-select {
-  width: 130px;
+  width: 8.125rem;
   div[role=button] {
     padding: 0 !important;
   }

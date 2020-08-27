@@ -103,17 +103,17 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .panel {
   &__wrapper {
-    padding: 12px 12px 15px;
+    padding: .75rem .75rem 1rem;
   }
 }
 .list {
   &__wrapper {
-    max-height: 300px;
+    max-height: 18.75rem;
     overflow-y: scroll;
   }
   &__item {
-    padding: 8px 26px;
-    height: 18px;
+    padding: .5rem 1.625rem;
+    height: 1.125rem;
   }
 }
 </style>

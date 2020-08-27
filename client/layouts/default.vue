@@ -134,7 +134,7 @@ export default Vue.extend({
 <style lang="scss">
 .app {
   display: grid;
-  grid-gap: 1px;
+  grid-gap: .0625rem;
   grid-template-rows: $header-height auto;
   grid-template-columns: map-get($main-width, "sm-down") minmax(#{map-get($main-width, "sm-down")}, #{map-get($main-width, "md-up")});
   grid-template-areas:
@@ -148,7 +148,7 @@ export default Vue.extend({
     width: 100%;
   }
   margin: 0;
-  padding: 1px;
+  padding: .0625rem;
   height: map-get($app-height, "md-up");
   @include sm-and-down {
     height: map-get($app-height, "sm-down");
@@ -180,7 +180,7 @@ export default Vue.extend({
       transition: transform .25s;
       &--out {
         position: relative;
-        transform: translateX(calc(100% + 1px));
+        transform: translateX(calc(100% + .0625rem));
       }
     }
   }

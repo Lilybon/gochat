@@ -1,18 +1,18 @@
 // simple layout
 $simple-bar-height: (
-  "sm-down": 56px,
-  "md-up": 226px
+  "sm-down": 3.5rem,
+  "md-up": 14.125rem
 );
 // chatroom layout
 $app-height: (
   "sm-down":100vh,
   "md-up": 80vh
 );
-$header-height: 20px;
-$toolbar-height: 50px;
+$header-height: 1.25rem;
+$toolbar-height: 3.125rem;
 $main-width: (
-  "sm-down":375px,
-  "md-up": 825px
+  "sm-down": 23.4375rem,
+  "md-up": 51.5625rem
 );
 $main-height: (
   "sm-down": calc(#{map-get($app-height, "sm-down")} - #{$header-height}),

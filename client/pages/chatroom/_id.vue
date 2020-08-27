@@ -3,7 +3,11 @@
     <div class="panel__header panel__header--wrap">
       <div>
         <div>
-          <v-btn :to="{ name: 'index' }" class="mr-1" icon color="primary">
+          <v-btn
+            @click="$router.go(-1)"
+            icon
+            color="primary"
+          >
             <v-icon dense>{{ mdiChevronLeft }}</v-icon>
           </v-btn>
         </div>
@@ -12,18 +16,20 @@
             <v-icon dense>{{ mdiMagnify }}</v-icon>
           </v-btn>
           <v-btn icon color="primary">
-              <v-icon dense>{{ mdiDotsHorizontal }}</v-icon>
+            <v-icon dense>{{ mdiDotsHorizontal }}</v-icon>
           </v-btn>
         </div>
       </div>
     </div>
-    <div class="panel__main">
+    <div class="panel__main d-flex flex-column px-4">
       <component
-        class="mb-1"
-        v-for="i in 30" 
-        :key="i"
-        :is="'ChatroomMessage'"
-      ></component>
+        v-for="(message, index) in messageList"
+        :key="index"
+        :is="message.type === 'time-bar' ? 'time-bar' : 'chatroom-row'"
+        :message="message"
+        class="mb-2"
+        myName="Jason"
+      />
     </div>
     <div class="panel__footer panel__footer--wrap">
       <div>
@@ -64,15 +70,19 @@ import {
   mdiSend,
   mdiMicrophoneOutline
 } from '@mdi/js'
-const ChatroomMessage = () => import('~/components/chatroom/ChatroomMessage.vue')
+import { getChatroomMessages } from '~/mocks'
+import ChatroomRow from '~/components/ChatroomRow/index.vue'
+import TimeBar from '~/components/ChatroomTimeBar.vue'
 export default Vue.extend({
   name: 'Chatroom',
   components: {
-    ChatroomMessage
+    ChatroomRow,
+    TimeBar
   },
   data () {
     return {
       message: '',
+      messageList: [],
       mdiChevronLeft,
       mdiMagnify,
       mdiDotsHorizontal,
@@ -80,6 +90,12 @@ export default Vue.extend({
       mdiStickerEmoji,
       mdiSend,
       mdiMicrophoneOutline
+    }
+  },
+  async asyncData () {
+    const messageList = await getChatroomMessages()
+    return {
+      messageList
     }
   }
 })

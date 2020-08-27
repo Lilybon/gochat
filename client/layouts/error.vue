@@ -39,6 +39,6 @@ export default Vue.extend({
 
 <style scoped>
 h1 {
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 </style>

@@ -13,7 +13,7 @@
           back
         </v-btn>
         <h2 class="subtitle-1 font-weight-black text-capitalize">{{ tabName }}</h2>
-        <div :style="{ width: '95px' }"></div>
+        <div :style="{ width: '5.9375rem' }"></div>
       </div>
     </div>
     <div ref="scroll" class="panel__main accent darken-1">
@@ -57,13 +57,13 @@ export default Vue.extend({
 <style lang="scss">
 .settings {
   margin: 0 auto;
-  padding: 30px 20px;
-  width: 600px;
+  padding: 1.875rem 1.25rem;
+  width: 37.5rem;
   @include xs-only {
     width: 100%;
   }
   & > div:not(:last-child) {
-    margin-bottom: 25px;
+    margin-bottom: 1.5625rem;
   }
 }
 </style>

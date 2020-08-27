@@ -117,9 +117,9 @@ export default Vue.extend({
 <style lang="scss">
 .login {
   &__wrapper {
-    margin-bottom: 20px;
-    padding: 44px 65px;
-    max-width: 400px;
+    margin-bottom: 1.25rem;
+    padding: 2.75rem 4.0625rem;
+    max-width: 25rem;
   }
 }
 </style>
