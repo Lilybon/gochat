@@ -29,6 +29,9 @@ body {
   &--transparent {
     border-color: transparent !important;
   }
+  &--radius-sm {
+    border-radius: .3125rem;
+  }
   &--radius-md {
     border-radius: .625rem;
   }
