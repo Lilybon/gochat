@@ -27,9 +27,11 @@ export default {
 <style lang="scss">
 .chatroom-message {
   padding: .125rem .75rem;
-  max-width: map-get($main-width, "sm-down");
+  max-width: calc(#{map-get($main-width, "sm-down")} - 6rem);
   background-color: var(--v-accent-lighten1);
+  box-sizing: border-box;
   font-size: .75rem;
+  word-break: break-all;
   &--from-me {
     background-color: var(--v-primary-darken2);
   }

@@ -24,10 +24,10 @@ body {
     border-bottom: .0625rem solid;
   }
   &--accent-lighten-1 {
-    border-color: var(--v-accent-lighten1);
+    border-color: var(--v-accent-lighten1) !important;
   }
   &--transparent {
-    border-color: transparent;
+    border-color: transparent !important;
   }
   &--radius-md {
     border-radius: .625rem;
