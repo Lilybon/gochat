@@ -8,7 +8,7 @@
             icon
             color="primary"
           >
-            <v-icon dense>{{ mdiChevronLeft }}</v-icon>
+            <v-icon class="rotate--180" dense>{{ mdiChevronRight }}</v-icon>
           </v-btn>
         </div>
         <div class="mr-2">
@@ -62,7 +62,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import {
-  mdiChevronLeft,
+  mdiChevronRight,
   mdiMagnify,
   mdiDotsHorizontal,
   mdiPaperclip,
@@ -83,7 +83,7 @@ export default Vue.extend({
     return {
       message: '',
       messageList: [],
-      mdiChevronLeft,
+      mdiChevronRight,
       mdiMagnify,
       mdiDotsHorizontal,
       mdiPaperclip,

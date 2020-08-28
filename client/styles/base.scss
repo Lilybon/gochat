@@ -36,6 +36,14 @@ body {
     border-radius: 1.25rem;
   }
 }
+.rotate {
+  $degs: 90, 180, 270;
+  @each $deg in $degs {
+    &--#{$deg} {
+      transform: rotate($deg + deg);
+    }
+  }
+}
 .panel {
   display: flex;
   flex-direction: column;

@@ -9,7 +9,7 @@
           @click="$router.go(-1)"
           depressed
         >
-          <v-icon dense>{{ mdiChevronLeft }}</v-icon>
+          <v-icon class="rotate--180" dense>{{ mdiChevronRight }}</v-icon>
           back
         </v-btn>
         <h2 class="subtitle-1 font-weight-black text-capitalize">{{ tabName }}</h2>
@@ -24,13 +24,13 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { mdiChevronLeft } from '@mdi/js'
+import { mdiChevronRight } from '@mdi/js'
 export default Vue.extend({
   name: 'Settings',
   data () {
     return {
       headKey: 'settings',
-      mdiChevronLeft
+      mdiChevronRight
     }
   },
   computed: {
