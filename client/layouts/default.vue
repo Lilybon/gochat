@@ -12,7 +12,7 @@
               'panel__header--wrap',
               { 'panel__header--transparent': toolIndex % 2 === 0 }]">
               <component
-                class="d-flex space-between"
+                class="d-flex justify-between align-center"
                 :is="currentTool.tool"
               ></component>
             </div>
@@ -131,7 +131,7 @@ export default Vue.extend({
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .app {
   display: grid;
   grid-gap: .0625rem;

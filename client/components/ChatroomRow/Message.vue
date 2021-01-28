@@ -24,7 +24,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .chatroom-message {
   padding: .125rem .75rem;
   max-width: calc(#{map-get($main-width, "sm-down")} - 6rem);

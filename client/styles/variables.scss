@@ -26,3 +26,7 @@ $scroll-height: (
   "sm-down": calc(#{map-get($app-height, "sm-down")} - #{$header-height} - #{$toolbar-height} * 2),
   "md-up": calc(#{map-get($app-height, "md-up")} - #{$header-height} - #{$toolbar-height} * 2)
 );
+// z-index
+$z-layers: (
+  "chatroom-search-bar": 1
+);

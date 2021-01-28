@@ -55,6 +55,7 @@ body {
     max-height: map-get($main-height, "sm-down");
   }
   &__header {
+    position: relative;
     justify-content: space-between;
     align-items: center;
     flex-basis: $toolbar-height;
@@ -65,11 +66,11 @@ body {
     &--transparent {
       border-bottom: .0625rem solid transparent;
     }
-    & > div {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+    // & > div {
+    //   display: flex;
+    //   justify-content: space-between;
+    //   align-items: center;
+    // }
   }
   &__main {
     flex-grow: 1;

@@ -1,7 +1,7 @@
 <template>
   <div class="panel">
     <div class="panel__header panel__header--wrap">
-      <div>
+      <div class="d-flex justify-between align-center">
         <v-btn
           class="text-capitalize primary--text"
           text
@@ -54,7 +54,7 @@ export default Vue.extend({
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .settings {
   margin: 0 auto;
   padding: 1.875rem 1.25rem;

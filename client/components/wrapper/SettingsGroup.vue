@@ -27,7 +27,7 @@ export default Vue.extend({
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .setting-groups {
   & > div:not(:last-child) {
     border-bottom: .0625rem solid var(--v-accent-lighten1);

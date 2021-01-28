@@ -22,7 +22,7 @@ export default Vue.extend({
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .chatroom-time-bar {
   align-self: center;
   padding: .125rem .3125rem;

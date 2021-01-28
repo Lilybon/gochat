@@ -54,7 +54,7 @@ export default Vue.extend({
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .chatroom-row {
   align-self: flex-start;
   display: flex;

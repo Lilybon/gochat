@@ -43,7 +43,7 @@ export default Vue.extend({
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .settings-row {
   &__label {
     flex-grow: 1;

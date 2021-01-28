@@ -114,7 +114,7 @@ export default Vue.extend({
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .login {
   &__wrapper {
     margin-bottom: 1.25rem;
