@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-list dense class="accent">
-      <v-list-item class="caption pr-0">
+      <v-list-item class="caption pr-0" @click="visible.addContact = true">
         <v-list-item-icon class="ml-1 mr-6">
           <v-icon color="primary" dense>{{ mdiAccountPlusOutline }}</v-icon>
         </v-list-item-icon>
@@ -29,6 +29,9 @@
         </template>
       </v-list-item-group>
     </v-list>
+    <add-contact-dialog
+      v-model="visible.addContact"
+    />
   </div>
 </template>
 
@@ -36,6 +39,7 @@
 import Vue from 'vue'
 import { getContacts } from '~/mocks'
 import { mdiAccountPlusOutline } from '@mdi/js'
+import AddContactDialog from '~/components/dialog/AddContactDialog.vue'
 interface Contact {
   id: number,
   name: string,
@@ -44,10 +48,14 @@ interface Contact {
 }
 interface ContactsNavigator {
   contacts: Array<Contact>,
-  mdiAccountPlusOutline: string
+  mdiAccountPlusOutline: string,
+  visible: Record<string, boolean>
 }
 export default Vue.extend({
   name: 'ContactsNavigator',
+  components: {
+    AddContactDialog
+  },
   props: {
     contactId: {
       type: [ Number, String ],
@@ -57,7 +65,10 @@ export default Vue.extend({
   data () {
     return {
       contacts: [],
-      mdiAccountPlusOutline
+      mdiAccountPlusOutline,
+      visible: {
+        addContact: false
+      }
     } as ContactsNavigator
   },
   computed: {

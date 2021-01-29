@@ -4,7 +4,9 @@
       <div class="d-flex justify-between align-center">
         <div class="d-flex align-center">
           <v-btn
-            @click="$router.go(-1)"
+            link
+            :to="{ name: 'index' }"
+            nuxt
             icon
             color="primary"
           >
@@ -24,9 +26,7 @@
           <v-btn class="mr-1" icon color="primary" @click="visible.searchBar = !visible.searchBar">
             <v-icon dense>{{ mdiMagnify }}</v-icon>
           </v-btn>
-          <v-btn icon color="primary">
-            <v-icon dense>{{ mdiDotsHorizontal }}</v-icon>
-          </v-btn>
+          <setting />
         </div>
       </div>
       <search-bar
@@ -59,9 +59,7 @@
           row-height="16"
           hide-details
         ></v-textarea>
-        <v-btn class="mr-2" icon color="info darken-2">
-          <v-icon dense>{{ mdiStickerEmoji }}</v-icon>
-        </v-btn>
+        <sticker-menu />
         <v-btn class="mr-2" icon :color="message.length ? 'primary' : 'info darken-2'">
           <v-icon dense>{{ message.length ? mdiSend : mdiMicrophoneOutline }}</v-icon>
         </v-btn>
@@ -75,30 +73,30 @@ import Vue from 'vue'
 import {
   mdiChevronRight,
   mdiMagnify,
-  mdiDotsHorizontal,
-  mdiStickerEmoji,
   mdiSend,
   mdiMicrophoneOutline
 } from '@mdi/js'
 import { getChatroomMessages } from '~/mocks'
 import SearchBar from '~/components/ChatroomSearchBar.vue'
+import Setting from '~/components/ChatroomSetting.vue'
 import Row from '~/components/ChatroomRow/index.vue'
-import Upload from '~/components/ChatroomUpload.vue'
 import TimeBar from '~/components/ChatroomTimeBar.vue'
+import Upload from '~/components/ChatroomUpload.vue'
+import StickerMenu from '~/components/ChatroomStickerMenu.vue'
 export default Vue.extend({
   name: 'Chatroom',
   components: {
     SearchBar,
+    Setting,
     Row,
+    TimeBar,
     Upload,
-    TimeBar
+    StickerMenu
   },
   data () {
     return {
       mdiChevronRight,
       mdiMagnify,
-      mdiDotsHorizontal,
-      mdiStickerEmoji,
       mdiSend,
       mdiMicrophoneOutline,
       message: '',
