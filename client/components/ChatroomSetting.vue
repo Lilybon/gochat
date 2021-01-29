@@ -32,7 +32,8 @@
   </v-menu>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue'
 import {
   mdiDotsHorizontal,
   mdiFileEditOutline,
@@ -43,7 +44,7 @@ import {
   mdiBroom,
   mdiTrashCanOutline
 } from '@mdi/js'
-export default {
+export default Vue.extend({
   name: 'ChatroomSetting',
   data () {
     return {
@@ -87,5 +88,5 @@ export default {
       ]
     }
   }
-}
+})
 </script>

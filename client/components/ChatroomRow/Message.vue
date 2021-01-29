@@ -9,7 +9,8 @@
 </template>
 
 <script lang="ts">
-export default {
+import Vue from 'vue'
+export default Vue.extend({
   name: 'ChatroomMessage',
   props: {
     message: {
@@ -21,7 +22,7 @@ export default {
       required: true
     }
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>

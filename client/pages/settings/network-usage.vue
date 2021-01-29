@@ -8,7 +8,3 @@ export default Vue.extend({
   name: 'NetworkUsage'
 })
 </script>
-
-<style>
-
-</style>

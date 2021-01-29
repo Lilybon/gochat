@@ -8,7 +8,3 @@ export default Vue.extend({
   name: 'ChatFolders'
 })
 </script>
-
-<style>
-
-</style>

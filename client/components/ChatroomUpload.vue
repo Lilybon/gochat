@@ -32,7 +32,8 @@
   </v-menu>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue'
 import {
   mdiPaperclip,
   mdiImageOutline,
@@ -41,7 +42,7 @@ import {
   mdiFileOutline,
   mdiMapMarkerOutline,
 } from '@mdi/js'
-export default {
+export default Vue.extend({
   name: 'ChatroomUpload',
   data () {
     return {
@@ -75,5 +76,5 @@ export default {
       ]
     }
   }
-}
+})
 </script>

@@ -54,7 +54,8 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue'
 import {
   mdiChevronRight,
   mdiMagnify,
@@ -63,7 +64,7 @@ import {
   mdiCloseCircleOutline
 } from '@mdi/js'
 
-export default {
+export default Vue.extend({
   name: 'ChatroomToolBar',
   props: {
     visible: {
@@ -81,7 +82,7 @@ export default {
       search: ''
     }
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>

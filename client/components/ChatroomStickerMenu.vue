@@ -22,16 +22,17 @@
   </v-menu>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue'
 import { mdiStickerEmoji } from '@mdi/js'
-export default {
+export default Vue.extend({
   name: 'ChatroomStickerMenu',
   data () {
     return {
       mdiStickerEmoji
     }
   }
-}
+})
 </script>
 
 <style>

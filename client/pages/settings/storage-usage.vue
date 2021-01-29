@@ -8,7 +8,3 @@ export default Vue.extend({
   name: 'StorageUsage'
 })
 </script>
-
-<style>
-
-</style>

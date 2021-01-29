@@ -8,7 +8,3 @@ export default Vue.extend({
   name: 'Videos'
 })
 </script>
-
-<style>
-
-</style>
