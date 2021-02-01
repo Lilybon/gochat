@@ -28,5 +28,8 @@ $scroll-height: (
 );
 // z-index
 $z-layers: (
+  "hidden": 10,
+  "aside-sm-down": 0,
+  "aside-md-up": 2,
   "chatroom-search-bar": 1
 );

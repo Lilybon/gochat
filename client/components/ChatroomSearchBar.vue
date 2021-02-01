@@ -16,7 +16,7 @@
     </v-btn>
     <v-text-field
       v-model="search"
-      class="mx-1 field"
+      class="mx-1 flex-grow--1"
       placeholder="Search"
       rounded
       solo
@@ -99,8 +99,5 @@ export default Vue.extend({
   border: .0625rem solid var(--v-accent-lighten1);
   background-color: var(--v-accent-base);
   transform: translateY(100%);
-}
-.field {
-  flex-grow: 1;
 }
 </style>

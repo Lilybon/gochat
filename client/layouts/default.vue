@@ -1,6 +1,7 @@
 <template>
   <v-app dark>
-    <div class="d-flex justify-center">
+    <div class="d-flex">
+      <div class="hidden"></div>
       <div class="app">
         <div class="app__header">
           <app-header></app-header>
@@ -45,6 +46,7 @@
           <nuxt />
         </div>
       </div>
+      <div class="hidden"></div>
     </div>
   </v-app>
 </template>
@@ -140,27 +142,28 @@ export default Vue.extend({
   grid-template-areas:
     "header header"
     "aside main";
+  margin: 0;
+  padding: .0625rem;
+  height: map-get($app-height, "md-up");
+  background-color: var(--v-accent-lighten1);
   @include sm-and-down {
     grid-template-columns: 1fr;
     grid-template-areas:
       "header"
       "main";
     width: 100%;
-  }
-  margin: 0;
-  padding: .0625rem;
-  height: map-get($app-height, "md-up");
-  @include sm-and-down {
     height: map-get($app-height, "sm-down");
   }
-  background-color: var(--v-accent-lighten1);
   &__header {
     grid-area: header;
     background-color: var(--v-accent-lighten1);
   }
   &__aside {
+    position: relative;
+    z-index: map-get($z-layers, "aside-md-up");
     grid-area: aside;
     @include sm-and-down {
+      z-index: map-get($z-layers, "aside-sm-down");
       grid-area: main;
     }
     & > div {
@@ -177,12 +180,18 @@ export default Vue.extend({
       height: 100%;
     }
     @include sm-and-down {
-      transition: transform .25s;
+      transition: transform .3s ease-in-out;
       &--out {
         position: relative;
         transform: translateX(calc(100% + .0625rem));
       }
     }
   }
+}
+.hidden {
+  position: relative;
+  z-index: map-get($z-layers, "hidden");
+  flex: 1 1 0;
+  background-color: var(--v-accent-darken1);
 }
 </style>

@@ -8,6 +8,11 @@ body {
 .text-transform-none {
   text-transform: none;
 }
+.flex-grow {
+  &--1 {
+    flex-grow: 1;
+  }
+}
 .font {
   &--sm {
     font-size: 0.75rem;

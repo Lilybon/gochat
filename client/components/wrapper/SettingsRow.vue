@@ -1,6 +1,6 @@
 <template>
-  <div class="settings-row d-flex justify-between align-center py-2">
-    <label class="settings-row__label" :for="labelFor">
+  <div class="d-flex justify-between align-center py-2">
+    <label class="flex-grow--1" :for="labelFor">
       <h5 class="text-capitalize">{{ title }}</h5>
       <p v-if="subtitle.length" class="font--sm info--text text--darken-1">{{ subtitle }}</p>
     </label>
@@ -42,11 +42,3 @@ export default Vue.extend({
   }
 })
 </script>
-
-<style lang="scss" scoped>
-.settings-row {
-  &__label {
-    flex-grow: 1;
-  }
-}
-</style>

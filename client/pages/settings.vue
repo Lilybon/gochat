@@ -25,6 +25,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mdiChevronRight } from '@mdi/js'
+import '~/styles/settings-page.scss'
 export default Vue.extend({
   name: 'Settings',
   data () {
@@ -53,17 +54,3 @@ export default Vue.extend({
   }
 })
 </script>
-
-<style lang="scss" scoped>
-.settings {
-  margin: 0 auto;
-  padding: 1.875rem 1.25rem;
-  width: 37.5rem;
-  @include xs-only {
-    width: 100%;
-  }
-  & > div:not(:last-child) {
-    margin-bottom: 1.5625rem;
-  }
-}
-</style>

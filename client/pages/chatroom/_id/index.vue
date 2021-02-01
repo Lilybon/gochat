@@ -1,27 +1,25 @@
 <template>
   <div class="panel">
     <div class="panel__header panel__header--wrap">
-      <div class="d-flex justify-between align-center">
-        <div class="d-flex align-center">
-          <v-btn
-            link
-            :to="{ name: 'index' }"
-            nuxt
-            icon
-            color="primary"
-          >
-            <v-icon class="rotate--180" dense>{{ mdiChevronRight }}</v-icon>
-          </v-btn>
-          <div class="d-flex align-center">
-             <v-avatar width="35" height="35">
-              <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
-            </v-avatar>
-            <div>
-              <h4 class="subtitle-2 info--text">Front-end</h4>
-              <p class="caption info--text text--darken-2">last seen recently</p>
-            </div>
+      <div class="d-flex">
+        <v-btn
+          link
+          :to="{ name: 'index' }"
+          nuxt
+          icon
+          color="primary"
+        >
+          <v-icon class="rotate--180" dense>{{ mdiChevronRight }}</v-icon>
+        </v-btn>
+        <nuxt-link class="d-flex flex-grow--1 align-center" tag="div" :to="{ name: 'chatroom-id-info' }">
+          <v-avatar width="35" height="35">
+            <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+          </v-avatar>
+          <div>
+            <h4 class="subtitle-2 info--text">Front-end</h4>
+            <p class="caption info--text text--darken-2">last seen recently</p>
           </div>
-        </div>
+        </nuxt-link>
         <div class="mr-2">
           <v-btn class="mr-1" icon color="primary" @click="visible.searchBar = !visible.searchBar">
             <v-icon dense>{{ mdiMagnify }}</v-icon>
