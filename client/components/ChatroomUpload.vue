@@ -17,15 +17,15 @@
     </template>
     <v-list dense class="accent">
       <v-list-item
-        v-for="item in uploadList"
-        :key="item.label"
-        @click="item.cb"
+        v-for="upload in uploads"
+        :key="upload.label"
+        @click="upload.cb"
       >
         <v-list-item-icon>
-          <v-icon v-text="item.icon" color="primary"></v-icon>
+          <v-icon v-text="upload.icon" color="primary"></v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title v-text="item.label"></v-list-item-title>
+          <v-list-item-title v-text="upload.label"></v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </v-list>
@@ -47,7 +47,7 @@ export default Vue.extend({
   data () {
     return {
       mdiPaperclip,
-      uploadList: [
+      uploads: [
         {
           icon: mdiImageOutline,
           label: 'photo or video',

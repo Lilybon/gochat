@@ -11,7 +11,8 @@
             <div :class="[
               'panel__header',
               'panel__header--wrap',
-              { 'panel__header--transparent': toolIndex % 2 === 0 }]">
+              { 'panel__header--transparent': toolIndex % 2 === 0 }
+            ]">
               <component
                 class="d-flex justify-between align-center"
                 :is="currentTool.tool"
@@ -97,8 +98,8 @@ export default Vue.extend({
           name: 'messages',
           icon: mdiChat,
           navHeader: 'Hello',
-          tool: () => import('~/components/navigator/MessagesTool.vue'),
-          list: () => import('~/components/navigator/MessagesList.vue'),
+          tool: () => import('~/components/navigator/ContactsTool.vue'),
+          list: () => import('~/components/navigator/ChatroomsList.vue'),
           hiddenToolBottom: true
         },
         {

@@ -34,7 +34,7 @@
     </div>
     <div class="panel__main d-flex flex-column px-4">
       <component
-        v-for="(message, index) in messageList"
+        v-for="(message, index) in messages"
         :key="index"
         :is="message.type === 'time-bar' ? 'time-bar' : 'row'"
         :message="message"
@@ -98,16 +98,16 @@ export default Vue.extend({
       mdiSend,
       mdiMicrophoneOutline,
       message: '',
-      messageList: [],
+      messages: [],
       visible: {
         searchBar: false
       }
     }
   },
   async asyncData () {
-    const messageList = await getChatroomMessages()
+    const messages = await getChatroomMessages()
     return {
-      messageList
+      messages
     }
   }
 })

@@ -37,10 +37,10 @@
         </div>
         <div class="d-flex">
           <div
-            v-for="(action, index) in actionList"
+            v-for="(action, index) in actions"
             :key="`action-${ action.label }`"
             class="flex-grow--1 d-flex flex-column align-center px-5 py-2 accent border--radius-md font-sm"
-            :class="{ 'mr-3': index !== actionList.length - 1 }"
+            :class="{ 'mr-3': index !== actions.length - 1 }"
           >
             <v-icon color="primary" dense>{{ action.icon }}</v-icon>
             <p class="caption primary--text text-capitalize">{{ action.label }}</p>
@@ -54,7 +54,7 @@
           >
             <v-tab
               v-model="activeTab"
-              v-for="tab in tabList"
+              v-for="tab in tabs"
               :key="tab"
               active-class="primary--text"
               class="caption text-capitalize"
@@ -83,7 +83,7 @@ export default Vue.extend({
     mode: 'out-in'
   },
   data () {
-    const tabList = [
+    const tabs = [
       'members',
       'media',
       'files',
@@ -92,8 +92,8 @@ export default Vue.extend({
     ]
     return {
       mdiChevronRight,
-      activeTab: tabList[0],
-      actionList: [
+      activeTab: tabs[0],
+      actions: [
         {
           label: 'add',
           icon: mdiAccountPlus,
@@ -115,7 +115,7 @@ export default Vue.extend({
           cb: () => {}
         }
       ],
-      tabList
+      tabs
     }
   }
 })

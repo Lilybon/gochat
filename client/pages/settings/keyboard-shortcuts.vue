@@ -1,7 +1,7 @@
 <template>
   <div>
     <settings-group
-      v-for="type in shortcutList"
+      v-for="type in shortcuts"
       :key="type.label"
       :title="type.label"
     >
@@ -36,7 +36,7 @@ export default Vue.extend({
   },
   data () {
     return {
-      shortcutList: [
+      shortcuts: [
         {
           label: 'chat',
           list: [

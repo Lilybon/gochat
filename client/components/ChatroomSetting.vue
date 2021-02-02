@@ -17,15 +17,15 @@
     </template>
     <v-list dense class="accent">
       <v-list-item
-        v-for="item in settingList"
-        :key="item.label"
-        @click="item.cb"
+        v-for="setting in settings"
+        :key="setting.label"
+        @click="setting.cb"
       >
         <v-list-item-icon>
-          <v-icon v-text="item.icon" color="primary"></v-icon>
+          <v-icon v-text="setting.icon" color="primary"></v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title v-text="item.label"></v-list-item-title>
+          <v-list-item-title v-text="setting.label"></v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </v-list>
@@ -49,7 +49,7 @@ export default Vue.extend({
   data () {
     return {
       mdiDotsHorizontal,
-      settingList: [
+      settings: [
         {
           icon: mdiFileEditOutline,
           label: 'edit',

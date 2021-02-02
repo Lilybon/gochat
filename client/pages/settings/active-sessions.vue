@@ -25,7 +25,7 @@ export default Vue.extend({
   },
   data () {
     return {
-      sessionList: []
+      sessions: []
     }
   }
 })

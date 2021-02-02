@@ -43,7 +43,7 @@
 
     <settings-group title="privacy">
       <settings-row
-        v-for="privacy in privacyList"
+        v-for="privacy in privacies"
         :key="privacy.title"
         :title="privacy.title"
         label-for="phone-number"
@@ -121,7 +121,7 @@ export default Vue.extend({
         suggestFrequentContacts: true,
         deleteMyAccount: 0
       },
-      privacyList: [
+      privacies: [
         { title: 'phone number', subtitle: 'my contacts' },
         { title: 'last seen', subtitle: 'everybody' },
         { title: 'groups and channels', subtitle: 'everybody' },

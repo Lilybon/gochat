@@ -48,7 +48,7 @@
     </settings-group>
     <settings-group title="sticker sets" hint="Create your own sticker sets using @stickers bot.">
       <settings-row
-        v-for="sticker in stickerList"
+        v-for="sticker in stickers"
         :key="sticker.id"
         :title="sticker.name"
         :subtitle="`${ sticker.count } stickers`"
@@ -80,7 +80,7 @@ export default Vue.extend({
       control: {
         loopAnimatedStickers: true
       },
-      stickerList: [
+      stickers: [
         {
           id: 1,
           name: '杰哥不要啦',
