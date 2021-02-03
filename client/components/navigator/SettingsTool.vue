@@ -4,7 +4,6 @@
       id="settings-search"
       v-model="search"
       placeholder="Search"
-      rounded
       solo
       background-color="accent lighten-1"
       color="info"

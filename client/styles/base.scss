@@ -44,6 +44,14 @@ body {
     border-radius: 1.25rem;
   }
 }
+.overflow {
+  &--hidden {
+    overflow: hidden;
+  }
+  &--auto {
+    overflow: auto;
+  }
+}
 .rotate {
   $degs: 90, 180, 270;
   @each $deg in $degs {

@@ -18,7 +18,6 @@
       v-model="search"
       class="mx-1 flex-grow--1"
       placeholder="Search"
-      rounded
       solo
       background-color="accent lighten-1"
       color="info"
