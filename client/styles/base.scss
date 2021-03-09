@@ -2,6 +2,28 @@ body {
   background-color: var(--v-accent-base);
   overflow: hidden;
 }
+.position {
+  &--relative {
+    position: relative;
+  }
+  &--absolute {
+    position: absolute;
+  }
+}
+.edge {
+  &--top {
+    top: 0;
+  }
+  &--right {
+    right: 0;
+  }
+  &--bottom {
+    bottom: 0;
+  }
+  &--left {
+    left: 0;
+  }
+}
 .justify-between {
   justify-content: space-between;
 }
@@ -27,6 +49,9 @@ body {
   }
   &--bottom {
     border-bottom: .0625rem solid;
+  }
+  &--all {
+    border: .0625rem solid;
   }
   &--accent-lighten-1 {
     border-color: var(--v-accent-lighten1) !important;

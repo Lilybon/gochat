@@ -32,7 +32,7 @@
         :visible.sync="visible.searchBar"
       />
     </div>
-    <div class="panel__main d-flex flex-column px-4">
+    <div ref="scroll" class="panel__main d-flex flex-column px-4">
       <component
         v-for="(message, index) in messages"
         :key="index"
@@ -42,7 +42,17 @@
         myName="Jason"
       />
     </div>
-    <div class="panel__footer panel__footer--wrap">
+    <div class="position--relative panel__footer panel__footer--wrap">
+      <div class="position--absolute edge--right edge--top" :style="{ transform: 'translate(-50%, -150%)' }">
+        <v-btn
+          class="rotate--90 border--all border--accent-lighten-1"
+          icon
+          color="info darken-1"
+          @click="scrollToBottom"
+        >
+          <v-icon dense>{{ mdiChevronRight }}</v-icon>
+        </v-btn>
+      </div>
       <div>
         <upload />
         <v-textarea
@@ -102,6 +112,11 @@ export default Vue.extend({
       visible: {
         searchBar: false
       }
+    }
+  },
+  methods: {
+    scrollToBottom () {
+      this.$refs.scroll instanceof HTMLElement && (this.$refs.scroll.scrollTop = this.$refs.scroll.scrollHeight)
     }
   },
   async asyncData () {

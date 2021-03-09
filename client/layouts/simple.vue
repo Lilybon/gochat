@@ -1,11 +1,11 @@
 <template>
   <v-app dark>
     <div class="accent lighten-1 simple__header"></div>
-    <v-content class="simple__container">
+    <v-main class="simple__container">
       <v-container pa-0 fluid>
         <nuxt />
       </v-container>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
