@@ -13,7 +13,7 @@
       <v-list-item-group color="primary darken-1" v-model="activeChatroomId">
         <template v-for="contact in contacts">
           <v-list-item
-            :key="`list-item-${ contact.chatroom.id }`"
+            :key="`contact-${ contact.chatroom.id }`"
             :value="contact.chatroom.id"
             class="caption pr-0"
           >
@@ -50,16 +50,7 @@ import Vue from 'vue'
 import { getContacts } from '~/mocks'
 import { mdiAccountPlusOutline } from '@mdi/js'
 import AddContactDialog from '~/components/dialog/AddContactDialog.vue'
-interface Contact {
-  id: number,
-  chatroom: Chatroom,
-  name: string,
-  avatar: string,
-  last_seen: string
-}
-interface Chatroom {
-  id: number
-}
+import { Contact } from '~/mocks/types'
 interface ContactsNavigator {
   contacts: Array<Contact>,
   mdiAccountPlusOutline: string,

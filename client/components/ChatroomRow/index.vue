@@ -13,17 +13,10 @@
 
 <script lang="ts">
 import Vue, { PropOptions } from 'vue'
+import { Message } from '~/mocks/types'
 const ChatroomMessage = () => import('~/components/ChatroomRow/Message.vue')
 const ChatroomImage = () => import('~/components/ChatroomRow/Image.vue')
 const ChatroomSticker = () => import('~/components/ChatroomRow/Sticker.vue')
-
-interface Message {
-  name: string,
-  type: string,
-  content?: string,
-  imageUrl?: string,
-  time: Date
-}
 
 export default Vue.extend({
   name: 'ChatroomRow',

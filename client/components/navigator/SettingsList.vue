@@ -28,7 +28,7 @@
 
       <template v-for="link in links">
         <v-list-item
-          :key="`list-item-${ link.name }`"
+          :key="`link-${ link.name }`"
           class="caption pr-0"
           color="primary"
           :to="{ name: link.route }"
@@ -52,7 +52,7 @@
 
       <template v-for="help in helps">
         <v-list-item
-          :key="`list-item-${ help.name }`"
+          :key="`help-${ help.name }`"
           class="pr-0"
           dense
         >

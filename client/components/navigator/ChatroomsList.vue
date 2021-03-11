@@ -3,7 +3,7 @@
     <v-list-item-group color="primary darken-1" v-model="activeChatroomId">
       <template v-for="chatroom in chatrooms">
         <v-list-item
-          :key="`list-item-${ chatroom.id }`"
+          :key="`chatroom-${ chatroom.id }`"
           :value="chatroom.id"
           class="caption pr-0"
         >
@@ -33,18 +33,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { getChatrooms } from '~/mocks'
-interface LastMessage {
-  type: string,
-  sender: string,
-  content: string,
-  time: string
-}
-interface Chatroom {
-  id: number,
-  name: string,
-  avatar: string,
-  last_message: LastMessage
-}
+import { Chatroom } from '~/mocks/types'
 interface ChatroomNavigator {
   chatrooms: Array<Chatroom>
 }

@@ -40,10 +40,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { getCountryOptions } from '~/mocks'
-interface Option {
-  name: string
-  value: string
-}
+import { Option } from '~/mocks/types'
 interface CountrySelectorDialog {
   search: string
   selected: string
