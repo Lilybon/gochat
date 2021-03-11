@@ -49,8 +49,11 @@ export const getCountryOptions = () =>
 
 export const getContacts = () =>
   names
-    .map((name, i) => ({
-      id: i,
+    .map(name => ({
+      id: Math.floor(Math.random() * 100),
+      chatroom: {
+        id: Math.floor(Math.random() * 100)
+      },
       name,
       avatar: pickOne(images),
       last_seen: 'last seen 7 minutes ago'

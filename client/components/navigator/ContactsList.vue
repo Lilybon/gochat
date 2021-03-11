@@ -10,11 +10,11 @@
         </v-list-item-content>
       </v-list-item>
       <v-divider class="border--accent-lighten-1" inset></v-divider>
-      <v-list-item-group color="primary darken-1" v-model="id">
+      <v-list-item-group color="primary darken-1" v-model="activeChatroomId">
         <template v-for="contact in contacts">
           <v-list-item
-            :key="`list-item-${ contact.id }`"
-            :value="contact.id"
+            :key="`list-item-${ contact.chatroom.id }`"
+            :value="contact.chatroom.id"
             class="caption pr-0"
           >
             <v-list-item-avatar>
@@ -22,10 +22,20 @@
             </v-list-item-avatar>
             <v-list-item-content>
               <v-list-item-title class="info--text" v-text="contact.name"></v-list-item-title>
-              <v-list-item-subtitle :class="['info--text', { 'text--darken-2': id !== contact.id } ]" v-text="contact.last_seen"></v-list-item-subtitle>
+              <v-list-item-subtitle
+                :class="[
+                  'info--text',
+                  { 'text--darken-2': activeChatroomId !== contact.chatroom.id }
+                ]"
+                v-text="contact.last_seen"
+              ></v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
-          <v-divider :key="`divider-${ contact.id }`" :class="`border--${ id === contact.id ? 'transparent' : 'accent-lighten-1' }`" inset></v-divider>
+          <v-divider
+            :key="`divider-${ contact.chatroom.id }`"
+            :class="`border--${ activeChatroomId === contact.chatroom.id ? 'transparent' : 'accent-lighten-1' }`"
+            inset
+          ></v-divider>
         </template>
       </v-list-item-group>
     </v-list>
@@ -42,9 +52,13 @@ import { mdiAccountPlusOutline } from '@mdi/js'
 import AddContactDialog from '~/components/dialog/AddContactDialog.vue'
 interface Contact {
   id: number,
+  chatroom: Chatroom,
   name: string,
   avatar: string,
   last_seen: string
+}
+interface Chatroom {
+  id: number
 }
 interface ContactsNavigator {
   contacts: Array<Contact>,
@@ -57,7 +71,7 @@ export default Vue.extend({
     AddContactDialog
   },
   props: {
-    contactId: {
+    chatroomId: {
       type: [ Number, String ],
       required: true
     }
@@ -72,12 +86,12 @@ export default Vue.extend({
     } as ContactsNavigator
   },
   computed: {
-    id: {
+    activeChatroomId: {
       get (): number | string {
-        return this.contactId
+        return this.chatroomId
       },
-      set (id: number) {
-        this.$emit('update:contactId', id)
+      set (chatroomId: number) {
+        this.$emit('update:chatroomId', chatroomId)
       }
     }
   },

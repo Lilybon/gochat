@@ -19,10 +19,10 @@
               ></component>
             </div>
             <div class="panel__main">
-               <component
-                  :is="currentTool.list"
-                  :contactId.sync="contactId"
-                ></component>
+              <component
+                :is="currentTool.list"
+                :chatroomId.sync="chatroomId"
+              ></component>
             </div>
             <div class="panel__footer">
               <div>
@@ -78,7 +78,7 @@ export default Vue.extend({
     return {
       isHydrated: false,
       toolIndex: 0,
-      contactId: '',
+      chatroomId: '',
       tools: [
         {
           name: 'contacts',
@@ -124,10 +124,10 @@ export default Vue.extend({
       let next = tool.route || 'index'
       if (next !== this.$route.name) this.$router.push({ name: next })
     },
-    contactId (id) {
+    chatroomId (id) {
       this.$router.push({
         name: 'chatroom-id',
-        params: { id: this.contactId }
+        params: { id: this.chatroomId }
       })
     }
   }
