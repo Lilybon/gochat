@@ -44,6 +44,7 @@ module.exports = {
   */
   buildModules: [
     '@nuxt/typescript-build',
+    '@nuxtjs/composition-api',
     '@nuxtjs/vuetify'
   ],
   /*
@@ -80,5 +81,8 @@ module.exports = {
    plugins: [new VuetifyLoaderPlugin()],
     extend (config, ctx) {
     }
+  },
+  generate: {
+    interval: 2000,
   }
 }
