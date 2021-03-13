@@ -63,50 +63,27 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent, reactive, useAsync } from '@nuxtjs/composition-api'
 import SettingsGroup from '~/components/wrapper/SettingsGroup.vue'
 import SettingsRow from '~/components/wrapper/SettingsRow.vue'
 import { mdiChevronRight, mdiTrashCanOutline } from '@mdi/js'
-export default Vue.extend({
+import { getStickers } from '~/mocks'
+export default defineComponent({
   name: 'Stickers',
   components: {
     SettingsGroup,
     SettingsRow
   },
-  data () {
+  setup () {
+    const control = reactive({
+      loopAnimatedStickers: true
+    })
+    const stickers = useAsync(() => getStickers())
     return {
       mdiChevronRight,
       mdiTrashCanOutline,
-      control: {
-        loopAnimatedStickers: true
-      },
-      stickers: [
-        {
-          id: 1,
-          name: '杰哥不要啦',
-          count: 120
-        },
-        {
-          id: 2,
-          name: 'igotallday_fans',
-          count: 28
-        },
-        {
-          id: 3,
-          name: 'Peepo pepe',
-          count: 30
-        },
-        {
-          id: 4,
-          name: 'Bobby Hill',
-          count: 22
-        },
-        {
-          id: 5,
-          name: 'PEPEtopAnim',
-          count: 50
-        }
-      ]
+      control,
+      stickers
     }
   }
 })

@@ -147,30 +147,32 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent, reactive } from '@nuxtjs/composition-api'
 import SettingsGroup from '~/components/wrapper/SettingsGroup.vue'
 import SettingsRow from '~/components/wrapper/SettingsRow.vue'
-export default Vue.extend({
+export default defineComponent({
   name: 'Notifications',
   components: {
     SettingsGroup,
     SettingsRow
   },
-  data () {
+  setup () {
+    const control = reactive({
+      notifications: true,
+      messagePreview: false,
+      notificationTone: true,
+      bounceDockerIcon: true,
+      resetNotification: false,
+      enabled: false,
+      includeGroups: true,
+      includeChannels: true,
+      countUnreadMessage: false,
+      newContacts: true,
+      showNotifications: false
+    })
+
     return {
-      control: {
-        notifications: true,
-        messagePreview: false,
-        notificationTone: true,
-        bounceDockerIcon: true,
-        resetNotification: false,
-        enabled: false,
-        includeGroups: true,
-        includeChannels: true,
-        countUnreadMessage: false,
-        newContacts: true,
-        showNotifications: false
-      }
+      control
     }
   }
 })

@@ -72,7 +72,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent, reactive, useRouter } from '@nuxtjs/composition-api'
 import CountrySelectorDialog from '~/components/dialog/CountrySelectorDialog.vue'
 interface User {
   country: string,
@@ -87,28 +87,31 @@ interface Data {
   user: User,
   show: Show
 }
-export default Vue.extend({
+export default defineComponent({
   name: 'login',
   layout: 'simple',
   components: {
     CountrySelectorDialog
   },
-  data () {
-    return {
-      user: {
-        country: '',
-        code: '',
-        phone: ''
-      },
-      show: {
-        country: false,
-        more: false
-      }
+  setup () {
+    const router = useRouter()
+    const user = reactive({
+      country: '',
+      code: '',
+      phone: ''
+    })
+    const show = reactive({
+      country: false,
+      more: false
+    })
+
+    const login = (): void => {
+      router.push('/')
     }
-  },
-  methods: {
-    login (): void {
-      this.$router.push('/')
+    return {
+      user,
+      show,
+      login
     }
   }
 })

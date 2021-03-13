@@ -1,6 +1,6 @@
-import { names, images, messages } from './data'
+import { names, images, messages, stickerNames } from './data'
 import { getRandomNumber, pickFromArray } from './random'
-import { Contact, Chatroom, Option } from './types'
+import { Contact, Chatroom, Option, Sticker } from './types'
 
 export const getCountryOptions = (): Promise<Array<Option>> =>
   Promise.resolve(
@@ -13,10 +13,10 @@ export const getCountryOptions = (): Promise<Array<Option>> =>
 export const getContacts = (): Promise<Array<Contact>> =>
   Promise.resolve(
     names
-      .map(name => ({
-        id: getRandomNumber(100),
+      .map((name, index) => ({
+        id: index,
         chatroom: {
-          id: 100 + getRandomNumber(100)
+          id: index
         },
         name,
         avatar: pickFromArray(images),
@@ -67,4 +67,13 @@ export const getChatrooms = (): Promise<Array<Chatroom>> =>
           time: '10:30 PM'
         }
       }))
+  )
+
+export const getStickers = (): Promise<Array<Sticker>> =>
+  Promise.resolve(
+    Array.from(Array(5), (_, index) => ({
+      id: index,
+      name: pickFromArray(stickerNames),
+      count: getRandomNumber(100)
+    }))
   )

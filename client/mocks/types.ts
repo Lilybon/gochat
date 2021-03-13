@@ -32,3 +32,9 @@ export interface Message {
   imageUrl?: string,
   time: Date
 }
+
+export interface Sticker {
+  id: number,
+  name: string,
+  count: number
+}

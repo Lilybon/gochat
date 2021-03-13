@@ -67,7 +67,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent, ref } from '@nuxtjs/composition-api'
 import {
   mdiChevronRight,
   mdiAccountPlus,
@@ -76,13 +76,13 @@ import {
   mdiInformation
 } from '@mdi/js'
 import '~/styles/settings-page.scss'
-export default Vue.extend({
+export default defineComponent({
   name: 'ChatroomInfo',
   transition: {
     name: 'slide-left',
     mode: 'out-in'
   },
-  data () {
+  setup () {
     const tabs = [
       'members',
       'media',
@@ -90,31 +90,34 @@ export default Vue.extend({
       'links',
       'GIFs'
     ]
+    const actions = [
+      {
+        label: 'add',
+        icon: mdiAccountPlus,
+        cb: () => {}
+      },
+      {
+        label: 'mute',
+        icon: mdiBellOff,
+        cb: () => {}
+      },
+      {
+        label: 'leave',
+        icon: mdiExitToApp,
+        cb: () => {}
+      },
+      {
+        label: 'report',
+        icon: mdiInformation,
+        cb: () => {}
+      }
+    ]
+    const activeTab = ref(tabs[0])
+
     return {
       mdiChevronRight,
-      activeTab: tabs[0],
-      actions: [
-        {
-          label: 'add',
-          icon: mdiAccountPlus,
-          cb: () => {}
-        },
-        {
-          label: 'mute',
-          icon: mdiBellOff,
-          cb: () => {}
-        },
-        {
-          label: 'leave',
-          icon: mdiExitToApp,
-          cb: () => {}
-        },
-        {
-          label: 'report',
-          icon: mdiInformation,
-          cb: () => {}
-        }
-      ],
+      activeTab,
+      actions,
       tabs
     }
   }

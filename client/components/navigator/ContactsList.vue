@@ -13,7 +13,7 @@
       <v-list-item-group color="primary darken-1" v-model="activeChatroomId">
         <template v-for="contact in contacts">
           <v-list-item
-            :key="`contact-${ contact.chatroom.id }`"
+            :key="`contact-${ contact.id }`"
             :value="contact.chatroom.id"
             class="caption pr-0"
           >
