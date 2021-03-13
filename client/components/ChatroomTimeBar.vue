@@ -15,7 +15,6 @@ export default defineComponent({
   filters: {
     dateMonth (d: Date): string {
       const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-      const month: number = d.getMonth()
       return `${ d.getDate() } ${ monthNames[d.getMonth()] }`
     }
   }

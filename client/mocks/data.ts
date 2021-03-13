@@ -1,4 +1,6 @@
-export const names = [
+import { RecentCallStatusType } from './types'
+
+export const names: Array<string> = [
   'Snow',
   'Jerry',
   'Kayne',
@@ -12,7 +14,18 @@ export const names = [
   'Brian'
 ]
 
-export const images =[
+export const avatars: Array<string> = [
+  'https://i.pinimg.com/originals/6b/92/83/6b92835acb70da7f8c86b86b981eedf8.jpg',
+  'https://onepage.nownews.com/sites/default/files/styles/crop_thematic_mobile_banner_img/public/2021-01/FotoJet%20-%202021-01-26T182735.400.jpg?h=33077bfc&itok=BSSsvzfm',
+  'https://i.imgflip.com/2k4wr6.jpg',
+  'https://pbs.twimg.com/media/ERHyxgXU8AEhPjY.jpg'
+]
+
+export const stickers: Array<string> = [
+  'https://lh3.googleusercontent.com/proxy/E-He4JADI1m4PoqPbsGqIXVkseL2vsrhWqG6fZAWaDOosMtyZuOmmAOp_pJDSd5lmVbU4WF0Kqh67hI7xiGNaxtMXQxjW-TMVNImOalL9iOR5Dkd8k72uQ'
+]
+
+export const images: Array<string> = [
   'https://en.meming.world/images/en/thumb/e/e2/Crying_Cat_with_paw_up.jpg/300px-Crying_Cat_with_paw_up.jpg',
   'https://media.npr.org/assets/img/2016/03/29/ap_090911089838_sq-3271237f28995f6530d9634ff27228cae88e3440.jpg',
   'https://dvblobcdnjp.azureedge.net//Content/Upload/Popular/Images/2017-06/e99e6b5e-ca6c-4c19-87b7-dfd63db6381a_m.jpg',
@@ -21,7 +34,7 @@ export const images =[
   'https://s3.amazonaws.com/rapgenius/1362713678_black-kid-crying-tear.gif'
 ]
 
-export const messages = [
+export const messages: Array<string> = [
   'thx',
   '好喔',
   'ㄏㄏ',
@@ -58,10 +71,15 @@ export const messages = [
   `
 ]
 
-export const stickerNames = [
+export const stickerNames: Array<string> = [
   '杰哥不要啦',
   'igotallday_fans',
   'Peepo pepe',
   'Bobby Hill',
   'PEPEtopAnim'
+]
+
+export const recentCallStatus: Array<RecentCallStatusType> = [
+  'outgoing',
+  'missed'
 ]

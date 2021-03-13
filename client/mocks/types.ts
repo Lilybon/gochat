@@ -1,16 +1,18 @@
+export type RecentCallStatusType = 'outgoing' | 'missed'
+
 export interface Contact {
   id: number,
   chatroom: Partial<Chatroom>,
   name: string,
   avatar: string,
-  last_seen: string
+  lastSeen: string
 }
 
 export interface Chatroom {
   id: number,
   name: string,
   avatar: string,
-  last_message: LastMessage
+  lastMessage: LastMessage
 }
 
 interface LastMessage {
@@ -37,4 +39,10 @@ export interface Sticker {
   id: number,
   name: string,
   count: number
+}
+
+export interface RecentCall {
+  id: number,
+  status: RecentCallStatusType
+  contact: Partial<Contact>
 }

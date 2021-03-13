@@ -12,11 +12,11 @@
           </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title class="subtitle-2 font-weight-black info--text" v-text="chatroom.name"></v-list-item-title>
-            <v-list-item-subtitle class="info--text" v-text="chatroom.last_message.sender"></v-list-item-subtitle>
-            <v-list-item-subtitle :class="['info--text', { 'text--darken-2': activeChatroomId !== chatroom.id } ]" v-text="chatroom.last_message.content"></v-list-item-subtitle>
+            <v-list-item-subtitle class="info--text" v-text="chatroom.lastMessage.sender"></v-list-item-subtitle>
+            <v-list-item-subtitle :class="['info--text', { 'text--darken-2': activeChatroomId !== chatroom.id } ]" v-text="chatroom.lastMessage.content"></v-list-item-subtitle>
           </v-list-item-content>
           <v-list-item-action class="mr-3">
-            <v-list-item-action-text v-text="chatroom.last_message.time"></v-list-item-action-text>
+            <v-list-item-action-text v-text="chatroom.lastMessage.time"></v-list-item-action-text>
             <v-icon color="grey lighten-1"></v-icon>
           </v-list-item-action>
         </v-list-item>

@@ -27,7 +27,7 @@
                   'info--text',
                   { 'text--darken-2': activeChatroomId !== contact.chatroom.id }
                 ]"
-                v-text="contact.last_seen"
+                v-text="contact.lastSeen"
               ></v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>

@@ -1,6 +1,6 @@
-import { names, images, messages, stickerNames } from './data'
+import { avatars, names, images, messages, stickers, stickerNames, recentCallStatus } from './data'
 import { getRandomNumber, pickFromArray } from './random'
-import { Contact, Chatroom, Option, Sticker } from './types'
+import { Contact, Chatroom, Option, Sticker, RecentCall } from './types'
 
 export const getCountryOptions = (): Promise<Array<Option>> =>
   Promise.resolve(
@@ -19,8 +19,8 @@ export const getContacts = (): Promise<Array<Contact>> =>
           id: index
         },
         name,
-        avatar: pickFromArray(images),
-        last_seen: 'last seen 7 minutes ago'
+        avatar: pickFromArray(avatars),
+        lastSeen: 'last seen 7 minutes ago'
       }))
   )
 
@@ -45,7 +45,7 @@ export const getChatroomMessages = (messageLength = 40) => {
     () => ({
       type: 'sticker',
       name: pickFromArray(names),
-      imageUrl: 'https://en.meming.world/images/en/thumb/e/e2/Crying_Cat_with_paw_up.jpg/300px-Crying_Cat_with_paw_up.jpg',
+      imageUrl: pickFromArray(stickers),
       time: new Date()
     })
   ]
@@ -58,9 +58,9 @@ export const getChatrooms = (): Promise<Array<Chatroom>> =>
       .map((name, i) => ({
         id: i,
         name,
-        avatar: pickFromArray(images),
+        avatar: pickFromArray(avatars),
         unread: getRandomNumber(100),
-        last_message: {
+        lastMessage: {
           type: '',
           sender: 'Lilybon',
           content: '123',
@@ -75,5 +75,18 @@ export const getStickers = (): Promise<Array<Sticker>> =>
       id: index,
       name: pickFromArray(stickerNames),
       count: getRandomNumber(100)
+    }))
+  )
+
+export const getRecentCalls = (): Promise<Array<RecentCall>> =>
+  Promise.resolve(
+    Array.from(Array(8), (_, index) => ({
+      id: index,
+      status: pickFromArray(recentCallStatus),
+      time: '2/8/21',
+      contact: {
+        avatar: pickFromArray(avatars),
+        name: pickFromArray(names)
+      }
     }))
   )
