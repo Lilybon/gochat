@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent } from '@nuxtjs/composition-api'
 import {
   mdiPaperclip,
   mdiImageOutline,
@@ -42,38 +42,39 @@ import {
   mdiFileOutline,
   mdiMapMarkerOutline,
 } from '@mdi/js'
-export default Vue.extend({
+export default defineComponent({
   name: 'ChatroomUpload',
-  data () {
+  setup () {
+    const uploads = [
+      {
+        icon: mdiImageOutline,
+        label: 'photo or video',
+        cb: () => {}
+      },
+      {
+        icon: mdiCameraOutline,
+        label: 'camera',
+        cb: () => {}
+      },
+      {
+        icon: mdiPollBoxOutline,
+        label: 'poll',
+        cb: () => {}
+      },
+      {
+        icon: mdiFileOutline,
+        label: 'file',
+        cb: () => {}
+      },
+      {
+        icon: mdiMapMarkerOutline,
+        label: 'location',
+        cb: () => {}
+      }
+    ]
     return {
       mdiPaperclip,
-      uploads: [
-        {
-          icon: mdiImageOutline,
-          label: 'photo or video',
-          cb: () => {}
-        },
-        {
-          icon: mdiCameraOutline,
-          label: 'camera',
-          cb: () => {}
-        },
-        {
-          icon: mdiPollBoxOutline,
-          label: 'poll',
-          cb: () => {}
-        },
-        {
-          icon: mdiFileOutline,
-          label: 'file',
-          cb: () => {}
-        },
-        {
-          icon: mdiMapMarkerOutline,
-          label: 'location',
-          cb: () => {}
-        }
-      ]
+      uploads
     }
   }
 })

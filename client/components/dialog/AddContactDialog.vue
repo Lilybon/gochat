@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import { computed, defineComponent } from '@nuxtjs/composition-api'
 export default {
   name: 'AddContactDialog',
   props: {
@@ -13,14 +14,13 @@ export default {
       type: Boolean
     }
   },
-  computed: {
-    show: {
-      get () {
-        return this.value
-      },
-      set (value) {
-        this.$emit('input', value)
-      }
+  setup (props, { emit }) {
+    const show = computed({
+      get: () => props.value,
+      set: value => { emit('input', value) }
+    })
+    return {
+      show
     }
   }
 }

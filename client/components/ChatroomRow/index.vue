@@ -12,13 +12,13 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropOptions } from 'vue'
+import { computed, defineComponent } from '@nuxtjs/composition-api'
 import { Message } from '~/mocks/types'
 const ChatroomMessage = () => import('~/components/ChatroomRow/Message.vue')
 const ChatroomImage = () => import('~/components/ChatroomRow/Image.vue')
 const ChatroomSticker = () => import('~/components/ChatroomRow/Sticker.vue')
 
-export default Vue.extend({
+export default defineComponent({
   name: 'ChatroomRow',
   components: {
     ChatroomMessage,
@@ -27,21 +27,24 @@ export default Vue.extend({
   },
   props: {
     message: {
-      type: Object,
+      type: Object as () => Message,
       required: true
-    } as PropOptions<Message>,
+    },
     myName: {
       type: String,
       required: true
     }
   },
-  computed: {
-    renderComponent (): string {
+  setup (props) {
+    const renderComponent = computed(() => {
       const prefix = 'chatroom'
-      return prefix + '-' + this.message.type
-    },
-    fromMe (): boolean {
-      return this.myName === this.message.name
+      return prefix + '-' + props.message.type
+    })
+    const fromMe = computed((): boolean => props.myName === props.message.name)
+
+    return {
+      renderComponent,
+      fromMe
     }
   }
 })

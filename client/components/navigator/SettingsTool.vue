@@ -27,14 +27,16 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent, ref } from '@nuxtjs/composition-api'
 import { mdiMagnify } from '@mdi/js'
-export default Vue.extend({
+export default defineComponent({
   name: 'SettingsTool',
-  data () {
+  setup () {
+    const search = ref('')
+
     return {
       mdiMagnify,
-      search: ''
+      search
     }
   }
 })

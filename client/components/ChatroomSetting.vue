@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent } from '@nuxtjs/composition-api'
 import {
   mdiDotsHorizontal,
   mdiFileEditOutline,
@@ -44,48 +44,50 @@ import {
   mdiBroom,
   mdiTrashCanOutline
 } from '@mdi/js'
-export default Vue.extend({
+export default defineComponent({
   name: 'ChatroomSetting',
-  data () {
+  setup () {
+    const settings = [
+      {
+        icon: mdiFileEditOutline,
+        label: 'edit',
+        cb: () => {}
+      },
+      {
+        icon: mdiInformationOutline,
+        label: 'info',
+        cb: () => {}
+      },
+      {
+        icon: mdiBellOffOutline,
+        label: 'mute',
+        cb: () => {}
+      },
+      {
+        icon: mdiArchiveArrowDownOutline,
+        label: 'archive',
+        cb: () => {}
+      },
+      {
+        icon: mdiUpdate,
+        label: 'scheduled massages',
+        cb: () => {}
+      },
+      {
+        icon: mdiBroom,
+        label: 'clear chat history',
+        cb: () => {}
+      },
+      {
+        icon: mdiTrashCanOutline,
+        label: 'delete and leave',
+        cb: () => {}
+      }
+    ]
+
     return {
       mdiDotsHorizontal,
-      settings: [
-        {
-          icon: mdiFileEditOutline,
-          label: 'edit',
-          cb: () => {}
-        },
-        {
-          icon: mdiInformationOutline,
-          label: 'info',
-          cb: () => {}
-        },
-        {
-          icon: mdiBellOffOutline,
-          label: 'mute',
-          cb: () => {}
-        },
-        {
-          icon: mdiArchiveArrowDownOutline,
-          label: 'archive',
-          cb: () => {}
-        },
-        {
-          icon: mdiUpdate,
-          label: 'scheduled massages',
-          cb: () => {}
-        },
-        {
-          icon: mdiBroom,
-          label: 'clear chat history',
-          cb: () => {}
-        },
-        {
-          icon: mdiTrashCanOutline,
-          label: 'delete and leave',
-          cb: () => {}
-        }
-      ]
+      settings
     }
   }
 })

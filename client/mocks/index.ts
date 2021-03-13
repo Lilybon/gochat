@@ -2,25 +2,27 @@ import { names, images, messages } from './data'
 import { getRandomNumber, pickFromArray } from './random'
 import { Contact, Chatroom, Option } from './types'
 
-export const getCountryOptions = (): Array<Option> => 
-  new Array(50)
-    .fill(0)
-    .map((_, i) => ({
-      name: `country-${i}`,
-      value: `+ ${i}`
+export const getCountryOptions = (): Promise<Array<Option>> =>
+  Promise.resolve(
+    Array.from(Array(50), (_, index) => ({
+      name: `country-${ index }`,
+      value: `+ ${ index }`
     }))
+  )
 
-export const getContacts = (): Array<Contact> =>
-  names
-    .map(name => ({
-      id: getRandomNumber(100),
-      chatroom: {
-        id: 100 + getRandomNumber(100)
-      },
-      name,
-      avatar: pickFromArray(images),
-      last_seen: 'last seen 7 minutes ago'
-    }))
+export const getContacts = (): Promise<Array<Contact>> =>
+  Promise.resolve(
+    names
+      .map(name => ({
+        id: getRandomNumber(100),
+        chatroom: {
+          id: 100 + getRandomNumber(100)
+        },
+        name,
+        avatar: pickFromArray(images),
+        last_seen: 'last seen 7 minutes ago'
+      }))
+  )
 
 export const getChatroomMessages = (messageLength = 40) => {
   const generators = [
@@ -47,20 +49,22 @@ export const getChatroomMessages = (messageLength = 40) => {
       time: new Date()
     })
   ]
-  return Array.from(Array(messageLength), () => pickFromArray(generators)())
+  return Promise.resolve(Array.from(Array(messageLength), () => pickFromArray(generators)()))
 }
 
-export const getChatrooms = (): Array<Chatroom> =>
-  names
-    .map((name, i) => ({
-      id: i,
-      name,
-      avatar: pickFromArray(images),
-      unread: getRandomNumber(100),
-      last_message: {
-        type: '',
-        sender: 'Lilybon',
-        content: '123',
-        time: '10:30 PM'
-      }
-    }))
+export const getChatrooms = (): Promise<Array<Chatroom>> =>
+  Promise.resolve(
+    names
+      .map((name, i) => ({
+        id: i,
+        name,
+        avatar: pickFromArray(images),
+        unread: getRandomNumber(100),
+        last_message: {
+          type: '',
+          sender: 'Lilybon',
+          content: '123',
+          time: '10:30 PM'
+        }
+      }))
+  )
