@@ -78,7 +78,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent } from '@nuxtjs/composition-api'
 import {
   mdiStickerEmoji,
   mdiMagnify,
@@ -86,9 +86,24 @@ import {
   mdiStickerOutline,
   mdiGif
 } from '@mdi/js'
-export default Vue.extend({
+export default defineComponent({
   name: 'ChatroomStickerMenu',
-  data () {
+  setup () {
+    const tabs = [
+      {
+        label: 'emoji',
+        icon: mdiEmoticonHappyOutline
+      },
+      {
+        label: 'sticker',
+        icon: mdiStickerOutline
+      },
+      {
+        label: 'gif',
+        icon: mdiGif
+      }
+    ]
+
     return {
       mdiStickerEmoji,
       mdiMagnify,
@@ -96,20 +111,7 @@ export default Vue.extend({
       mdiStickerOutline,
       mdiGif,
       search: '',
-      tabs: [
-        {
-          label: 'emoji',
-          icon: mdiEmoticonHappyOutline
-        },
-        {
-          label: 'sticker',
-          icon: mdiStickerOutline
-        },
-        {
-          label: 'gif',
-          icon: mdiGif
-        }
-      ]
+      tabs
     }
   }
 })

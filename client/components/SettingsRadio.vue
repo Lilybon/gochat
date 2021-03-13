@@ -16,9 +16,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { computed, defineComponent } from '@nuxtjs/composition-api'
 import { mdiCheckCircle } from '@mdi/js'
-export default Vue.extend({
+export default defineComponent({
   name: 'SettingsRadio',
   props: {
     id: {
@@ -34,19 +34,15 @@ export default Vue.extend({
       type: [Number, String, Boolean]
     }
   },
-  data () {
+  setup (props, { emit }) {
+    const selected = computed({
+      get: (): number | string | boolean => props.value,
+      set: (newValue: number | string | boolean) => { emit('input', newValue) }
+    })
+
     return {
-      mdiCheckCircle
-    }
-  },
-  computed: {
-    selected: {
-      get (): number | string | boolean {
-        return this.value
-      },
-      set (val: number | string | boolean) {
-        this.$emit('input', val)
-      }
+      mdiCheckCircle,
+      selected
     }
   }
 })

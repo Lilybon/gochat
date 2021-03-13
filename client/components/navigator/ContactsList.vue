@@ -13,7 +13,7 @@
       <v-list-item-group color="primary darken-1" v-model="activeChatroomId">
         <template v-for="contact in contacts">
           <v-list-item
-            :key="`contact-${ contact.chatroom.id }`"
+            :key="`contact-${ contact.id }`"
             :value="contact.chatroom.id"
             class="caption pr-0"
           >
@@ -46,17 +46,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent, reactive, computed, useAsync } from '@nuxtjs/composition-api'
 import { getContacts } from '~/mocks'
 import { mdiAccountPlusOutline } from '@mdi/js'
 import AddContactDialog from '~/components/dialog/AddContactDialog.vue'
 import { Contact } from '~/mocks/types'
-interface ContactsNavigator {
-  contacts: Array<Contact>,
-  mdiAccountPlusOutline: string,
-  visible: Record<string, boolean>
-}
-export default Vue.extend({
+export default defineComponent({
   name: 'ContactsNavigator',
   components: {
     AddContactDialog
@@ -67,27 +62,21 @@ export default Vue.extend({
       required: true
     }
   },
-  data () {
+  setup (props, { emit }) {
+    const contacts = useAsync(() => getContacts())
+    const visible = reactive({ addContact: false })
+
+    const activeChatroomId = computed({
+      get: (): number | string => props.chatroomId,
+      set: (chatroomId: number | string) => { emit('update:chatroomId', chatroomId) }
+    })
+
     return {
-      contacts: [],
+      contacts,
+      visible,
       mdiAccountPlusOutline,
-      visible: {
-        addContact: false
-      }
-    } as ContactsNavigator
-  },
-  computed: {
-    activeChatroomId: {
-      get (): number | string {
-        return this.chatroomId
-      },
-      set (chatroomId: number) {
-        this.$emit('update:chatroomId', chatroomId)
-      }
+      activeChatroomId
     }
-  },
-  async fetch () {
-    this.contacts = await getContacts()
   }
 })
 </script>

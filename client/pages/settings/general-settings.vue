@@ -152,42 +152,46 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent, reactive } from '@nuxtjs/composition-api'
 import SettingsGroup from '~/components/wrapper/SettingsGroup.vue'
 import SettingsRow from '~/components/wrapper/SettingsRow.vue'
 import SettingsRadio from '~/components/SettingsRadio.vue'
 import { mdiChevronRight } from '@mdi/js'
-export default Vue.extend({
+export default defineComponent({
   name: 'GeneralSettings',
   components: {
     SettingsGroup,
     SettingsRow,
     SettingsRadio
   },
-  data () {
+  setup () {
+    const control = reactive({
+      showStickerSidebar: true,
+      replaceEmojiAuto: false,
+      largeEmoji: true,
+      showCallsTab: true,
+      showIconsInMenuBar: false,
+      inAppSounds: false,
+      copyTextFormat: true,
+      acceptSecretChats: true,
+      forceTouchAction: 0,
+      inputSettings: 0
+    })
+    const forceTouchActions = [
+      { label: 'reply on message', value: 0 },
+      { label: 'edit message', value: 1 },
+      { label: 'forward message', value: 2 }
+    ]
+    const inputSettings = [
+      { label: 'send with enter', value: 0 },
+      { label: 'send with ⌘ + enter', value: 1 }
+    ]
+
     return {
       mdiChevronRight,
-      control: {
-        showStickerSidebar: true,
-        replaceEmojiAuto: false,
-        largeEmoji: true,
-        showCallsTab: true,
-        showIconsInMenuBar: false,
-        inAppSounds: false,
-        copyTextFormat: true,
-        acceptSecretChats: true,
-        forceTouchAction: 0,
-        inputSettings: 0
-      },
-      forceTouchActions: [
-        { label: 'reply on message', value: 0 },
-        { label: 'edit message', value: 1 },
-        { label: 'forward message', value: 2 }
-      ],
-      inputSettings: [
-        { label: 'send with enter', value: 0 },
-        { label: 'send with ⌘ + enter', value: 1 }
-      ]
+      control,
+      forceTouchActions,
+      inputSettings
     }
   }
 })

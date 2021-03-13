@@ -23,11 +23,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent } from '@nuxtjs/composition-api'
 import { mdiCogOutline } from '@mdi/js'
-export default Vue.extend({
+export default defineComponent({
   name: 'RecentCallsTool',
-  data () {
+  setup () {
     return {
       mdiCogOutline
     }

@@ -76,7 +76,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent, reactive } from '@nuxtjs/composition-api'
 import {
   mdiAccountPlusOutline,
   mdiChevronRight,
@@ -91,98 +91,102 @@ import {
   mdiHelpCircle,
   mdiDotsHorizontalCircle
 } from '@mdi/js'
-export default Vue.extend({
+export default defineComponent({
   name: 'SettingsList',
-  data () {
+  setup () {
+    const user = reactive({
+      avatar: 'https://cdn2.ettoday.net/images/404/d404061.jpg',
+      name: 'Jason Chang',
+      phone: '+886 XXX XXX XXX',
+      tag: '@Lilybon'
+    })
+    const links = [
+      {
+        icon: mdiCog,
+        iconColor: 'primary darken-2',
+        name: 'General',
+        route: 'settings-general-settings',
+        background: 'info'
+      },
+      {
+        icon: null,
+        iconColor: 'info',
+        name: 'Notification and Sounds',
+        route: 'settings-notifications',
+        background: 'error'
+      },
+      {
+        icon: mdiLock,
+        iconColor: 'info',
+        name: 'Privacy and Security',
+        route: 'settings-privacy-and-security',
+        background: 'primary darken-1'
+      },
+      {
+        icon: mdiDatabase,
+        iconColor: 'info',
+        name: 'Data and Storage',
+        route: 'settings-data-and-storage',
+        background: 'success'
+      },
+      {
+        icon: mdiLaptop,
+        iconColor: 'info',
+        name: 'Active Sessions',
+        route: 'settings-active-sessions',
+        background: 'warning'
+      },
+      {
+        icon: mdiFountainPen,
+        iconColor: 'info',
+        name: 'Appearance',
+        route: 'settings-appearance',
+        background: 'primary lighten-1'
+      },
+      {
+        icon: mdiWeb,
+        iconColor: 'info',
+        name: 'Language',
+        route: 'settings-language',
+        background: 'secondary'
+      },
+      {
+        icon: mdiStickerOutline,
+        iconColor: 'info',
+        name: 'Stickers',
+        route: 'settings-stickers',
+        background: 'warning'
+      },
+      {
+        icon: mdiFolder,
+        iconColor: 'info',
+        name: 'Chat Folders',
+        route: 'settings-chat-folders',
+        background: 'secondary'
+      }
+    ]
+    const helps = [
+      {
+        icon: mdiHelpCircle,
+        iconColor: 'info',
+        name: 'GoChat FAQ',
+        background: 'primary lighten-1'
+      },
+      {
+        icon: mdiDotsHorizontalCircle,
+        iconColor: 'info',
+        name: 'Ask a Question',
+        background: 'info darken-2'
+      }
+    ]
+
     return {
       mdiAccountPlusOutline,
       mdiChevronRight,
-      user: {
-        avatar: 'https://cdn2.ettoday.net/images/404/d404061.jpg',
-        name: 'Jason Chang',
-        phone: '+886 XXX XXX XXX',
-        tag: '@Lilybon'
-      },
-      links: [
-        {
-          icon: mdiCog,
-          iconColor: 'primary darken-2',
-          name: 'General',
-          route: 'settings-general-settings',
-          background: 'info'
-        },
-        {
-          icon: null,
-          iconColor: 'info',
-          name: 'Notification and Sounds',
-          route: 'settings-notifications',
-          background: 'error'
-        },
-        {
-          icon: mdiLock,
-          iconColor: 'info',
-          name: 'Privacy and Security',
-          route: 'settings-privacy-and-security',
-          background: 'primary darken-1'
-        },
-        {
-          icon: mdiDatabase,
-          iconColor: 'info',
-          name: 'Data and Storage',
-          route: 'settings-data-and-storage',
-          background: 'success'
-        },
-        {
-          icon: mdiLaptop,
-          iconColor: 'info',
-          name: 'Active Sessions',
-          route: 'settings-active-sessions',
-          background: 'warning'
-        },
-        {
-          icon: mdiFountainPen,
-          iconColor: 'info',
-          name: 'Appearance',
-          route: 'settings-appearance',
-          background: 'primary lighten-1'
-        },
-        {
-          icon: mdiWeb,
-          iconColor: 'info',
-          name: 'Language',
-          route: 'settings-language',
-          background: 'secondary'
-        },
-        {
-          icon: mdiStickerOutline,
-          iconColor: 'info',
-          name: 'Stickers',
-          route: 'settings-stickers',
-          background: 'warning'
-        },
-        {
-          icon: mdiFolder,
-          iconColor: 'info',
-          name: 'Chat Folders',
-          route: 'settings-chat-folders',
-          background: 'secondary'
-        },
-      ],
-      helps: [
-        {
-          icon: mdiHelpCircle,
-          iconColor: 'info',
-          name: 'GoChat FAQ',
-          background: 'primary lighten-1'
-        },
-        {
-          icon: mdiDotsHorizontalCircle,
-          iconColor: 'info',
-          name: 'Ask a Question',
-          background: 'info darken-2'
-        }
-      ]
+      user,
+      links,
+      helps
     }
-  }
+  },
 })
 </script>

@@ -104,37 +104,41 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent, reactive } from '@nuxtjs/composition-api'
 import SettingsGroup from '~/components/wrapper/SettingsGroup.vue'
 import SettingsRow from '~/components/wrapper/SettingsRow.vue'
 import { mdiChevronRight } from '@mdi/js'
-export default Vue.extend({
+export default defineComponent({
   name: 'PrivacyAndSecurity',
   components: {
     SettingsGroup,
     SettingsRow
   },
-  data () {
+  setup () {
+    const control = reactive({
+      suggestFrequentContacts: true,
+      deleteMyAccount: 0
+    })
+    const privacies = [
+      { title: 'phone number', subtitle: 'my contacts' },
+      { title: 'last seen', subtitle: 'everybody' },
+      { title: 'groups and channels', subtitle: 'everybody' },
+      { title: 'voice calls', subtitle: 'everybody' },
+      { title: 'profile photo', subtitle: 'everybody' },
+      { title: 'forwarded messages', subtitle: 'everybody' }
+    ]
+    const deleteMyAccountOptions = [
+      { text: '1 month', value: 0 },
+      { text: '3 months', value: 1 },
+      { text: '9 months', value: 2 },
+      { text: '1 year', value: 3 }
+    ]
+
     return {
       mdiChevronRight,
-      control: {
-        suggestFrequentContacts: true,
-        deleteMyAccount: 0
-      },
-      privacies: [
-        { title: 'phone number', subtitle: 'my contacts' },
-        { title: 'last seen', subtitle: 'everybody' },
-        { title: 'groups and channels', subtitle: 'everybody' },
-        { title: 'voice calls', subtitle: 'everybody' },
-        { title: 'profile photo', subtitle: 'everybody' },
-        { title: 'forwarded messages', subtitle: 'everybody' }
-      ],
-      deleteMyAccountOptions: [
-        { text: '1 month', value: 0 },
-        { text: '3 months', value: 1 },
-        { text: '9 months', value: 2 },
-        { text: '1 year', value: 3 }
-      ]
+      control,
+      privacies,
+      deleteMyAccountOptions
     }
   }
 })

@@ -16,40 +16,44 @@
         <div :style="{ width: '5.9375rem' }"></div>
       </div>
     </div>
-    <div ref="scroll" class="panel__main accent darken-1">
+    <div ref="scrollRef" class="panel__main accent darken-1">
       <nuxt-child class="settings" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { computed, defineComponent, nextTick, ref, useRoute, useRouter, watch } from '@nuxtjs/composition-api';
 import { mdiChevronRight } from '@mdi/js'
 import '~/styles/settings-page.scss'
-export default Vue.extend({
+export default defineComponent({
   name: 'Settings',
-  data () {
-    return {
-      headKey: 'settings',
-      mdiChevronRight
-    }
-  },
-  computed: {
-    tabName (): string {
-      return (this.$route.name || '')
+  setup () {
+    const headKey = 'settings'
+    const router = useRouter()
+    const route = useRoute()
+    const scrollRef = ref(null)
+
+    const tabName = computed(() =>
+      (route.value.name || '')
         .replace(/\-/g, ' ')
-        .slice(this.headKey.length + 1)
+        .slice(headKey.length + 1)
+    )
+
+    // TODO: fix element refs type check
+    watch(route, async () => {
+      await nextTick()
+      // scrollRef.value.scroll instanceof HTMLElement && (scrollRef.value.scroll.scrollTop = 0)
+    })
+
+    if (route.value.name === 'settings') {
+      router.replace({ name: 'settings-general-settings' })
     }
-  },
-  watch: {
-    async $route () {
-      await this.$nextTick()
-      this.$refs.scroll instanceof HTMLElement && (this.$refs.scroll.scrollTop = 0)
-    }
-  },
-  created () {
-    if (this.$route.name === 'settings') {
-      this.$router.replace({ name: 'settings-general-settings' })
+
+    return {
+      scrollRef,
+      mdiChevronRight,
+      tabName
     }
   }
 })

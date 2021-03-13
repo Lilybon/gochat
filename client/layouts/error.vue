@@ -13,20 +13,21 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-export default Vue.extend({
+import { defineComponent } from '@nuxtjs/composition-api'
+export default defineComponent({
   props: {
     error: {
       type: Object,
       default: null
     }
   },
-  data () {
+  setup () {
     return {
       pageNotFound: '404 Not Found',
       otherError: 'An error occurred'
     }
   },
+  // TODO: replace head to composition api syntax
   head () {
     const title: string =
       this.error.statusCode === 404 ? this.pageNotFound : this.otherError

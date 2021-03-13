@@ -54,7 +54,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent, ref } from '@nuxtjs/composition-api'
 import {
   mdiChevronRight,
   mdiMagnify,
@@ -63,7 +63,7 @@ import {
   mdiCloseCircleOutline
 } from '@mdi/js'
 
-export default Vue.extend({
+export default defineComponent({
   name: 'ChatroomToolBar',
   props: {
     visible: {
@@ -71,14 +71,15 @@ export default Vue.extend({
       required: true
     }
   },
-  data () {
+  setup () {
+    const search = ref('')
     return {
       mdiChevronRight,
       mdiMagnify,
       mdiAccountOutline,
       mdiCalendarTextOutline,
       mdiCloseCircleOutline,
-      search: ''
+      search
     }
   }
 })

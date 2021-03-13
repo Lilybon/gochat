@@ -14,18 +14,19 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent } from '@nuxtjs/composition-api'
 import SettingsGroup from '~/components/wrapper/SettingsGroup.vue'
 import SettingsRow from '~/components/wrapper/SettingsRow.vue'
-export default Vue.extend({
+export default defineComponent({
   name: 'ActiveSessions',
   components: {
     SettingsGroup,
     SettingsRow
   },
-  data () {
+  setup () {
+    const sessions = []
+
     return {
-      sessions: []
     }
   }
 })

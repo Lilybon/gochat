@@ -11,29 +11,29 @@
             <div :class="[
               'panel__header',
               'panel__header--wrap',
-              { 'panel__header--transparent': toolIndex % 2 === 0 }
+              { 'panel__header--transparent': navigateIndex % 2 === 0 }
             ]">
               <component
                 class="d-flex justify-between align-center"
-                :is="currentTool.tool"
+                :is="currentNavigation.tool"
               ></component>
             </div>
             <div class="panel__main">
               <component
-                :is="currentTool.list"
+                :is="currentNavigation.list"
                 :chatroomId.sync="chatroomId"
               ></component>
             </div>
             <div class="panel__footer">
               <div>
                 <v-tabs
-                  v-model="toolIndex"
+                  v-model="navigateIndex"
                   grow
                   background-color="accent"
                   slider-color="transparent"
                 >
-                  <v-tab v-for="(tool, index) in tools" :key="tool.name">
-                    <v-icon :color="toolIndex === index ? 'primary' : 'info-darken-1'">{{ tool.icon }}</v-icon>
+                  <v-tab v-for="(navigation, index) in navigators" :key="navigation.name">
+                    <v-icon :color="navigateIndex === index ? 'primary' : 'info-darken-1'">{{ navigation.icon }}</v-icon>
                   </v-tab>
                 </v-tabs>
               </div>
@@ -53,7 +53,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { computed, defineComponent, ref, useRoute, useRouter, watch } from '@nuxtjs/composition-api'
 import AppHeader from '~/components/Header.vue'
 import {
   mdiAccountCircle,
@@ -67,68 +67,70 @@ interface Tool {
   icon: string,
   tool: Function,
   list: Function,
-  path?: string,
+  route?: string,
   hiddenToolBottom: Boolean
 }
-export default Vue.extend({
+export default defineComponent({
   components: {
     AppHeader
   },
-  data () {
-    return {
-      isHydrated: false,
-      toolIndex: 0,
-      chatroomId: '',
-      tools: [
-        {
-          name: 'contacts',
-          icon: mdiAccountCircle,
-          tool: () => import('~/components/navigator/ContactsTool.vue'),
-          list: () => import('~/components/navigator/ContactsList.vue'),
-          hiddenToolBottom: true
-        },
-        {
-          name: 'recent-calls',
-          icon: mdiPhone,
-          tool: () => import('~/components/navigator/RecentCallsTool.vue'),
-          list: () => import('~/components/navigator/RecentCallsList.vue'),
-          hiddenToolBottom: false
-        },
-        {
-          name: 'messages',
-          icon: mdiChat,
-          navHeader: 'Hello',
-          tool: () => import('~/components/navigator/ContactsTool.vue'),
-          list: () => import('~/components/navigator/ChatroomsList.vue'),
-          hiddenToolBottom: true
-        },
-        {
-          name: 'settings',
-          icon: mdiCog,
-          navHeader: 'Hello',
-          tool: () => import('~/components/navigator/SettingsTool.vue'),
-          list: () => import('~/components/navigator/SettingsList.vue'),
-          route: 'settings',
-          hiddenToolBottom: false
-        }
-      ]
-    }
-  },
-  computed: {
-    currentTool (): Tool | undefined {
-      return this.tools[this.toolIndex]
-    }
-  },
-  watch: {
-    currentTool (tool) {
-      let next = tool.route || 'index'
-      if (next !== this.$route.name) this.$router.push({ name: next })
-    },
-    chatroomId (id) {
-      this.$router.push({
+  setup () {
+    const router = useRouter()
+    const route = useRoute()
+    const navigators = [
+      {
+        name: 'contacts',
+        icon: mdiAccountCircle,
+        tool: () => import('~/components/navigator/ContactsTool.vue'),
+        list: () => import('~/components/navigator/ContactsList.vue'),
+        hiddenToolBottom: true
+      },
+      {
+        name: 'recent-calls',
+        icon: mdiPhone,
+        tool: () => import('~/components/navigator/RecentCallsTool.vue'),
+        list: () => import('~/components/navigator/RecentCallsList.vue'),
+        hiddenToolBottom: false
+      },
+      {
+        name: 'messages',
+        icon: mdiChat,
+        navHeader: 'Hello',
+        tool: () => import('~/components/navigator/ContactsTool.vue'),
+        list: () => import('~/components/navigator/ChatroomsList.vue'),
+        hiddenToolBottom: true
+      },
+      {
+        name: 'settings',
+        icon: mdiCog,
+        navHeader: 'Hello',
+        tool: () => import('~/components/navigator/SettingsTool.vue'),
+        list: () => import('~/components/navigator/SettingsList.vue'),
+        route: 'settings',
+        hiddenToolBottom: false
+      }
+    ]
+    const navigateIndex = ref(0)
+    const chatroomId = ref('')
+
+    const currentNavigation = computed((): Tool => navigators[navigateIndex.value])
+
+    watch(currentNavigation, navigation => {
+      let next = navigation.route || 'index'
+      if (next !== route.value.name) router.push({ name: next })
+    })
+    watch(chatroomId, (id) => {
+      router.push({
         name: 'chatroom-id',
-        params: { id: this.chatroomId }
+        params: { id: chatroomId.value }
       })
+    })
+
+    return {
+      navigateIndex,
+      chatroomId,
+      navigators,
+      currentNavigation
     }
   }
 })

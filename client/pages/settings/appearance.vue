@@ -43,17 +43,17 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent } from '@nuxtjs/composition-api'
 import SettingsGroup from '~/components/wrapper/SettingsGroup.vue'
 import SettingsRow from '~/components/wrapper/SettingsRow.vue'
 import { mdiChevronRight } from '@mdi/js'
-export default Vue.extend({
+export default defineComponent({
   name: 'Appearance',
   components: {
     SettingsGroup,
      SettingsRow
   },
-  data () {
+  setup () {
     return {
       mdiChevronRight
     }

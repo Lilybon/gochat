@@ -57,3 +57,11 @@ export const messages = [
     --compressed
   `
 ]
+
+export const stickerNames = [
+  '杰哥不要啦',
+  'igotallday_fans',
+  'Peepo pepe',
+  'Bobby Hill',
+  'PEPEtopAnim'
+]

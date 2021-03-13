@@ -32,7 +32,7 @@
         :visible.sync="visible.searchBar"
       />
     </div>
-    <div ref="scroll" class="panel__main d-flex flex-column px-4">
+    <div ref="scrollRef" class="panel__main d-flex flex-column px-4">
       <component
         v-for="(message, index) in messages"
         :key="index"
@@ -77,7 +77,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent, reactive, ref, useAsync } from '@nuxtjs/composition-api'
 import {
   mdiChevronRight,
   mdiMagnify,
@@ -91,7 +91,7 @@ import Row from '~/components/ChatroomRow/index.vue'
 import TimeBar from '~/components/ChatroomTimeBar.vue'
 import Upload from '~/components/ChatroomUpload.vue'
 import StickerMenu from '~/components/ChatroomStickerMenu.vue'
-export default Vue.extend({
+export default defineComponent({
   name: 'Chatroom',
   components: {
     SearchBar,
@@ -101,28 +101,29 @@ export default Vue.extend({
     Upload,
     StickerMenu
   },
-  data () {
+  setup () {
+    const scrollRef = ref(null)
+    const message = ref('')
+    const visible = reactive({
+      searchBar: false
+    })
+    const messages = useAsync(() => getChatroomMessages())
+
+    // TODO: fix element refs type check
+    const scrollToBottom = () => {
+      // scrollRef.value instanceof HTMLElement && (scrollRef.value.scrollTop = scrollRef.value.scroll.height)
+    }
+
     return {
       mdiChevronRight,
       mdiMagnify,
       mdiSend,
       mdiMicrophoneOutline,
-      message: '',
-      messages: [],
-      visible: {
-        searchBar: false
-      }
-    }
-  },
-  methods: {
-    scrollToBottom () {
-      this.$refs.scroll instanceof HTMLElement && (this.$refs.scroll.scrollTop = this.$refs.scroll.scrollHeight)
-    }
-  },
-  async asyncData () {
-    const messages = await getChatroomMessages()
-    return {
-      messages
+      message,
+      messages,
+      scrollRef,
+      visible,
+      scrollToBottom
     }
   }
 })

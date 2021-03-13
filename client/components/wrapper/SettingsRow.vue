@@ -9,8 +9,8 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-export default Vue.extend({
+import { defineComponent, computed } from '@nuxtjs/composition-api'
+export default  defineComponent({
   name: 'SettingsRowWrapper',
   props: {
     title: {
@@ -33,11 +33,14 @@ export default Vue.extend({
       default: ''
     }
   },
-  computed: {
-    labelFor (): string {
-      let label = this.labelPrefix + '__' + this.title.replace(/\s/g, '-')
-      if (this.labelSuffix.length) label += '__' + this.labelSuffix
+  setup (props) {
+    const labelFor = computed((): string => {
+      let label = props.labelPrefix + '__' + props.title.replace(/\s/g, '-')
+      if (props.labelSuffix.length) label += '__' + props.labelSuffix
       return label
+    })
+    return {
+      labelFor
     }
   }
 })

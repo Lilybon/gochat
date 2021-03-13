@@ -31,13 +31,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent, reactive, computed, useAsync } from '@nuxtjs/composition-api'
 import { getChatrooms } from '~/mocks'
-import { Chatroom } from '~/mocks/types'
-interface ChatroomNavigator {
-  chatrooms: Array<Chatroom>
-}
-export default Vue.extend({
+export default defineComponent({
   name: 'MessagesList',
   props: {
     chatroomId: {
@@ -45,23 +41,18 @@ export default Vue.extend({
       required: true
     }
   },
-  data () {
+  setup (props, { emit }) {
+    const chatrooms = useAsync(() => getChatrooms())
+
+    const activeChatroomId = computed({
+      get: (): number | string => props.chatroomId,
+      set: (chatroomId: number | string) => { emit('update:chatroomId', chatroomId) }
+    })
+
     return {
-      chatrooms: []
-    } as ChatroomNavigator
-  },
-  computed: {
-    activeChatroomId: {
-      get (): number | string {
-        return this.chatroomId
-      },
-      set (chatroomId: number) {
-        this.$emit('update:chatroomId', chatroomId)
-      }
+      chatrooms,
+      activeChatroomId
     }
-  },
-  async fetch () {
-    this.chatrooms = await getChatrooms()
   }
 })
 </script>

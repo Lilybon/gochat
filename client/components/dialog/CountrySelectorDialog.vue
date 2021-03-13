@@ -38,62 +38,61 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { computed, defineComponent, Ref, ref, useFetch, watch } from '@nuxtjs/composition-api'
 import { getCountryOptions } from '~/mocks'
 import { Option } from '~/mocks/types'
-interface CountrySelectorDialog {
-  search: string
-  selected: string
-  options: Array<Option>
-}
-export default Vue.extend({
+
+export default  defineComponent({
   name: 'CountrySelectorDialog',
+  fetchOnServer: false,
   props: {
-    value: Boolean,
-    country: String,
-    code: String
-  },
-  data () {
-    return {
-      search: '',
-      selected: '',
-      options: []
-    } as CountrySelectorDialog
-  },
-  watch: {
-    code (text: string) {
-      let country = ''
-      if (text.length) {
-        let target: Option | undefined = this.options.find(option => option.value.includes(text))
-        country = target?.name || ''
-      }
-      this.$emit('update:country', country)
-    }
-  },
-  computed: {
-    show: {
-      get (): Boolean {
-        return this.value
-      },
-      set (value: Boolean): void {
-        this.$emit('input', value)
-      }
+    value: {
+      type: Boolean,
+      required: true
     },
-    searchOptions (): Array<Option> {
-      return this.options
+    country: {
+      type: String,
+      required: true
+    },
+    code: {
+      type: String,
+      requird: true
     }
   },
-  methods: {
-    select (item: Option) {
-      this.$emit('update:country', item.name)
-      this.$emit('update:code', item.value)
-      this.show = false
+  setup (props, { emit }) {
+    const search = ref('')
+    const selected = ref('')
+    let options: Ref<Array<Option>> = ref([])
+
+    const show = computed({
+      get: (): Boolean => props.value,
+      set: (value: Boolean): void => { emit('input', value) }
+    })
+    // TODO: filter search options
+    const searchOptions = computed((): Array<Option> => options.value)
+
+    // TODO: guess user location
+    const setDefaultCountryAndCode = () => {}
+
+    const select = (item: Option) => {
+      emit('update:country', item.name)
+      emit('update:code', item.value)
+      show.value = false
     }
-  },
-  async fetch () {
-    this.options = await getCountryOptions()
-  },
-  fetchOnServer: false
+
+    useFetch(async () => {
+      options.value = await getCountryOptions()
+      setDefaultCountryAndCode()
+    })
+
+    return {
+      search,
+      selected,
+      searchOptions,
+      show,
+      select
+    }
+  }
 })
 </script>
 
